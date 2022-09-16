@@ -3,44 +3,71 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_needs.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 21:03:29 by dapark            #+#    #+#             */
-/*   Updated: 2022/09/12 21:04:11 by dapark           ###   ########.fr       */
+/*   Updated: 2022/09/16 14:18:36 by daheepark        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_putchar(char a)
+int	ft_putchar(char a)
 {
 	write(1, &a, 1);
+	return (1);
 }
 
-void	change_num(unsigned int a)
+int	change_num(unsigned int a)
 {
 	unsigned int	ar;
 	unsigned int	aq;
 	char			aa;
+	int				length;
 
+	length = 0;
 	ar = a % 10;
 	aq = a / 10;
 	if (aq != 0)
 		change_num(aq);
 	aa = ar + '0';
-	ft_putchar(aa);
+	length += ft_putchar(aa);
+	return (length);
 }
 
-void	ft_putnbr(int nb)
+int	put_nbr(int nb)
 {
 	unsigned int	num1;
+	int				length;
 
+	length = 0;
 	if (nb >= 0)
-		change_num(nb);
+	{
+		num1 = nb;
+		length += change_num(num1);
+	}
 	else
 	{
 		num1 = nb * (-1);
-		ft_putchar('-');
-		change_num(num1);
+		length += ft_putchar('-');
+		length += change_num(num1);
 	}
+	return (length);
+}
+
+int	put_str(char *str)
+{
+	int	i;
+	int	length;
+
+	i = 0;
+	length = 0;
+	if (str[0] == "\0")
+		return (-1);
+	while (str[i])
+	{
+		length += ft_putchar(str[i]);
+		i++;
+	}
+	return (length);
 }

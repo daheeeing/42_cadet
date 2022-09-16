@@ -2,7 +2,10 @@ NAME = libftprintf.a
 CC = gcc
 RM = rm -rf
 CFLAGS = -Wall -Wextra -Werror
-SRCS =
+SRCS = ft_printf.c \
+	ft_printf_needs.c \
+	ft_printf_needs2.c
+
 
 OBJS = $(SRCS:.c=.o)
 
@@ -19,6 +22,5 @@ clean:
 
 fclean:		clean
 			$(RM) $(NAME)
-			$(RM) libftpriontf.h.gch
 
 re:		fclean $(NAME)
