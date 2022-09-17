@@ -6,7 +6,7 @@
 /*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 19:56:07 by dapark            #+#    #+#             */
-/*   Updated: 2022/09/16 14:11:56 by daheepark        ###   ########.fr       */
+/*   Updated: 2022/09/16 14:53:56 by daheepark        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 int	decide_type(char c, va_list *str)
 {
-	int	i;
 	int	length;
 
-	i = 0;
 	length = 0;
 	if (c == 'd' || c == 'i')
 		length += put_nbr(va_arg(*str, int));
@@ -26,7 +24,7 @@ int	decide_type(char c, va_list *str)
 	else if (c == 's')
 		length += put_str(va_arg(*str, char *));
 	else if (c == 'p')
-		length += put_voidhex(va_arg(*str, void *));
+		length += put_voidhex(va_arg(*str, unsigned long long));
 	else if (c == 'u')
 		length += change_num(va_arg(*str, unsigned int));
 	else if (c == 'X')
@@ -34,7 +32,7 @@ int	decide_type(char c, va_list *str)
 	else if (c == 'x')
 		length += put_hex_lower(va_arg(*str, unsigned int));
 	else if (c == '%')
-		length += ft_putchar("%");
+		length += ft_putchar('%');
 	else
 		return (-1);
 	return(length);
@@ -54,9 +52,9 @@ int	ft_printf(const char *str, ...)
 	va_start(ap, str);
 	while (str[i])
 	{
-		if (*str == '%')
+		if (str[i] == '%')
 		{
-			flag = decide_type(str[i + 1], &str);
+			flag = decide_type(str[i + 1], &ap);
 			if (flag == -1)
 				return (-1);
 			length += flag;

@@ -1,5 +1,5 @@
 NAME = libftprintf.a
-CC = gcc
+CC = cc
 RM = rm -rf
 CFLAGS = -Wall -Wextra -Werror
 SRCS = ft_printf.c \

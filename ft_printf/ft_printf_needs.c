@@ -6,7 +6,7 @@
 /*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 21:03:29 by dapark            #+#    #+#             */
-/*   Updated: 2022/09/16 14:18:36 by daheepark        ###   ########.fr       */
+/*   Updated: 2022/09/16 14:54:38 by daheepark        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	put_str(char *str)
 
 	i = 0;
 	length = 0;
-	if (str[0] == "\0")
+	if (str[0] == '\0')
 		return (-1);
 	while (str[i])
 	{
