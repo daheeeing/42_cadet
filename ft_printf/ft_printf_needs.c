@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_needs.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
+/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 21:03:29 by dapark            #+#    #+#             */
-/*   Updated: 2022/09/16 14:54:38 by daheepark        ###   ########.fr       */
+/*   Updated: 2022/09/17 22:49:36 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	change_num(unsigned int a)
 	ar = a % 10;
 	aq = a / 10;
 	if (aq != 0)
-		change_num(aq);
+		length += change_num(aq);
 	aa = ar + '0';
 	length += ft_putchar(aa);
 	return (length);
@@ -57,13 +57,22 @@ int	put_nbr(int nb)
 
 int	put_str(char *str)
 {
-	int	i;
-	int	length;
+	int		i;
+	int		length;
+	char	*temp;
 
 	i = 0;
 	length = 0;
-	if (str[0] == '\0')
-		return (-1);
+	temp = "(null)";
+	if (str == NULL)
+	{
+		while (temp[i])
+		{
+			length += ft_putchar(temp[i]);
+			i++;
+		}
+		return (length);
+	}
 	while (str[i])
 	{
 		length += ft_putchar(str[i]);

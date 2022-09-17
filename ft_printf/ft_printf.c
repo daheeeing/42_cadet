@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
+/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 19:56:07 by dapark            #+#    #+#             */
-/*   Updated: 2022/09/16 14:53:56 by daheepark        ###   ########.fr       */
+/*   Updated: 2022/09/17 23:10:50 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	decide_type(char c, va_list *str)
 		length += ft_putchar('%');
 	else
 		return (-1);
-	return(length);
+	return (length);
 }
 
 int	ft_printf(const char *str, ...)
@@ -43,21 +43,19 @@ int	ft_printf(const char *str, ...)
 	va_list		ap;
 	int			i;
 	int			length;
-	int			flag;
+	int			check;
 
 	i = 0;
 	length = 0;
-	if ( str[0] == '\0')
-		return (-1);
 	va_start(ap, str);
 	while (str[i])
 	{
 		if (str[i] == '%')
 		{
-			flag = decide_type(str[i + 1], &ap);
-			if (flag == -1)
+			check = decide_type(str[i + 1], &ap);
+			if (check == -1)
 				return (-1);
-			length += flag;
+			length += check;
 			i++;
 		}
 		else
@@ -65,5 +63,6 @@ int	ft_printf(const char *str, ...)
 		i++;
 	}
 	va_end(ap);
-	return(length);
+	return (length);
 }
+
