@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_needs2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 12:14:15 by daheepark         #+#    #+#             */
-/*   Updated: 2022/09/17 22:54:06 by dapark           ###   ########.fr       */
+/*   Updated: 2022/09/21 23:30:14 by daheepark        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,20 @@ int	put_hex_lower(unsigned int num)
 	return (length);
 }
 
+int print_0x(unsigned long long num)
+{
+    ft_putchar('0');
+    ft_putchar('x');
+    return(put_voidhex(num) + 2);
+}
+
 int	put_voidhex(unsigned long long num)
 {
 	int	length;
 
 	length = 0;
 	if (num / 16 > 0)
-		length += put_voidhex(num);
-	length += ft_putchar('0');
-	length += ft_putchar('x');
+		length += put_voidhex(num / 16);
 	length += ft_putchar("0123456789abcdef"[num % 16]);
-	return (length);
+    return (length);
 }

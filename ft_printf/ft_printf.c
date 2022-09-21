@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 19:56:07 by dapark            #+#    #+#             */
-/*   Updated: 2022/09/17 23:10:50 by dapark           ###   ########.fr       */
+/*   Updated: 2022/09/21 23:14:12 by daheepark        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	decide_type(char c, va_list *str)
 	else if (c == 's')
 		length += put_str(va_arg(*str, char *));
 	else if (c == 'p')
-		length += put_voidhex(va_arg(*str, unsigned long long));
+		length += print_0x(va_arg(*str, unsigned long long));
 	else if (c == 'u')
 		length += change_num(va_arg(*str, unsigned int));
 	else if (c == 'X')
@@ -65,4 +65,3 @@ int	ft_printf(const char *str, ...)
 	va_end(ap);
 	return (length);
 }
-
