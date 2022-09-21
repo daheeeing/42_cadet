@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 19:56:07 by dapark            #+#    #+#             */
-/*   Updated: 2022/09/22 01:36:24 by dapark           ###   ########.fr       */
+/*   Updated: 2022/09/22 02:42:04 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,19 @@ int	decide_type(char c, va_list *str)
 	return (length);
 }
 
-int	ft_printf(const char *str, ...)
+int	print_length(const char *str, va_list *ap)
 {
-	va_list		ap;
-	int			i;
-	int			length;
-	int			check;
+	int	check;
+	int	length;
+	int	i;
 
 	i = 0;
 	length = 0;
-	va_start(ap, str);
 	while (str[i])
 	{
 		if (str[i] == '%')
 		{
-			check = decide_type(str[i + 1], &ap);
+			check = decide_type(str[i + 1], ap);
 			if (check == -1)
 				return (-1);
 			length += check;
@@ -61,6 +59,22 @@ int	ft_printf(const char *str, ...)
 		else
 			length += ft_putchar(str[i]);
 		i++;
+	}
+	return (length);
+}
+
+int	ft_printf(const char *str, ...)
+{
+	va_list		ap;
+	int			length;
+
+	length = 0;
+	va_start(ap, str);
+	length = print_length(str, &ap);
+	if (length == -1)
+	{
+		va_end(ap);
+		return (-1);
 	}
 	va_end(ap);
 	return (length);
