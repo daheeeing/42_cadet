@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/17 22:48:32 by dapark            #+#    #+#             */
-/*   Updated: 2022/09/17 22:49:10 by dapark           ###   ########.fr       */
+/*   Updated: 2022/09/22 01:36:46 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ int	ft_putchar(char a);
 int	put_hex_upper(unsigned int num);
 int	put_hex_lower(unsigned int num);
 int	put_voidhex(unsigned long long num);
+int	print_0x(unsigned long long num);
 
 #endif

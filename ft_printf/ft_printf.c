@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 19:56:07 by dapark            #+#    #+#             */
-/*   Updated: 2022/09/21 23:33:42 by dapark           ###   ########.fr       */
+/*   Updated: 2022/09/22 01:36:24 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	decide_type(char c, va_list *str)
 	else if (c == 's')
 		length += put_str(va_arg(*str, char *));
 	else if (c == 'p')
-		length += put_voidhex(va_arg(*str, unsigned long long));
+		length += print_0x(va_arg(*str, unsigned long long));
 	else if (c == 'u')
 		length += change_num(va_arg(*str, unsigned int));
 	else if (c == 'X')
