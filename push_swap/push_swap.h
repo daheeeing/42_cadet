@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 18:43:52 by daheepark         #+#    #+#             */
-/*   Updated: 2023/02/17 19:02:44 by dapark           ###   ########.fr       */
+/*   Updated: 2023/02/20 17:53:01 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,37 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include "libft/libft.h"
+# include <stdio.h>
 
-typedef struct s_contents
+typedef struct s_node
 {
     int                 value;
-    struct s_contents   *next;
-	struct s_contents	*prev;
-}   t_contents;
+    struct s_node   *next;
+}   t_node;
 
 typedef struct s_stack
 {
-    int                 size;
-    struct t_contents   *top;
-    struct t_contents   *bottom;
+    int      size;
+    t_node   *stack_a;
+    t_node   *stack_b;
 }   t_stack;
 
+int 		*check(int argc, char **str);
+int			*check_duplicate(int **tmp, int *arr_size, int size);
+int			*make_int_array(int size, char *str);
+int			count_num(char *str);
+void		check_int(char *str);
+void		print_error(int flag);
+void		free_all(int **tmp, int size, int *tmp2);
+void		chk_duplicate(int *tmp, int	size);
+int			ft_atoi(char *str, int i);
+void		make_stack(int	*nums, t_stack *stack);
+t_node		*create_node(int value);
+void		add_node(t_node *ori_node, t_node *new, int flag);
+t_node		*create_node(int value);
+void		remove_frontnode(t_stack *stack, char name);
+void		remove_backnode(t_stack *stack, char name);
+
+void		check_stack_a(t_stack *stack);
+void		check_stack_b(t_stack *stack);
 #endif

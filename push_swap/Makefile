@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+         #
+#    By: dapark <dapark@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/26 18:40:44 by daheepark         #+#    #+#              #
-#    Updated: 2023/01/26 18:43:44 by daheepark        ###   ########.fr        #
+#    Updated: 2023/02/20 17:53:52 by dapark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,26 +14,25 @@ NAME =	push_swap
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
-
-LIBFT =	make -C libft
+CFLAGS = -g -Wall -Wextra -Werror
 
 SRCS =	main.c \
-		
+		check.c \
+		parsing_utils.c \
+		make_stack.c \
+				
 
 OBJS =	$(SRCS:.c=.o)
 
 all	:	$(NAME)
 
 $(NAME)	:	$(OBJS)
-			$(LIBFT)
-			$(CC) $(CFLAGS) -o $(NAME) $(OBJS) libft/libft.a
+			$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 
 clean	:
 			$(RM) $(OBJS)
-			make -C libft clean
 fclean	:	clean
-			$(RM) push_swap libft/libft.a
+			$(RM) push_swap
 
 re	:	fclean 
 		make all

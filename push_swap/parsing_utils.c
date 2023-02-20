@@ -1,41 +1,62 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 10:52:59 by dapark            #+#    #+#             */
-/*   Updated: 2022/07/13 16:27:06 by dapark           ###   ########.fr       */
+/*   Updated: 2023/02/20 11:30:32 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-int	ft_atoi(const char *str)
+int	ft_atoi(char *str, int i)
 {
 	long	np;
 	long	ret;
 
 	np = 1;
 	ret = 0;
-	while (*str == '\t' || *str == '\r' || *str == '\v'
-		|| *str == ' ' || *str == '\f' || *str == '\n')
-		str++;
-	if (*str == '-' || *str == '+')
+	if (str[i] == '-' || str[i] == '+')
 	{
-		if (*str == '-')
+		if (str[i] == '-')
 			np *= -1;
-		str++;
+		i++;
 	}
-	while ((*str) && (*str >= '0' && *str <= '9'))
+	while ((str[i] != '\0') && \
+			(str[i] >= '0' && str[i] <= '9'))
 	{
-		ret = ret * 10 + (*str - '0');
-		str++;
+		ret = ret * 10 + (str[i] - '0');
+			i++;
 		if (ret * np < (long)-2147483648)
-			return (0);
+			print_error(1);
 		if (ret * np > (long)2147483647)
-			return (-1);
+			print_error(1);
 	}
 	return ((int)ret * (int)np);
+}
+
+void	chk_duplicate(int *tmp, int	size)
+{
+	int	i;
+	int	j;
+	int	chk;
+
+	i = 0;
+	while (i < size)
+	{
+		chk = tmp[i];
+		j = i + 1;
+		while (j < size)
+		{
+			if (chk == tmp[j])
+				// print_error(1);
+				printf("3");
+			j++;
+		}
+		i++;
+	}
+	return ;
 }
