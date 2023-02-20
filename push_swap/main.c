@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 18:35:11 by daheepark         #+#    #+#             */
-/*   Updated: 2023/02/20 17:52:55 by dapark           ###   ########.fr       */
+/*   Updated: 2023/02/20 18:50:24 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int main(int argc, char **argv)
 
 	stack = (t_stack *)malloc(sizeof(t_stack));
 	//stack = NULL;
-    nums = check(argc, argv);
+    nums = check(argc, argv, stack);
 	make_stack(nums, stack);
 	return (0);
 }

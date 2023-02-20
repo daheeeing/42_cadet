@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 18:43:52 by daheepark         #+#    #+#             */
-/*   Updated: 2023/02/20 17:53:01 by dapark           ###   ########.fr       */
+/*   Updated: 2023/02/20 18:58:14 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ typedef struct s_stack
     t_node   *stack_b;
 }   t_stack;
 
-int 		*check(int argc, char **str);
-int			*check_duplicate(int **tmp, int *arr_size, int size);
+int			*check(int argc, char **str, t_stack *stack);
+int			*check_duplicate(int **tmp, int *arr_size, int size, t_stack *stack);
 int			*make_int_array(int size, char *str);
 int			count_num(char *str);
 void		check_int(char *str);

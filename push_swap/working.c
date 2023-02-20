@@ -3,31 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   working.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
+/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 19:28:56 by daheepark         #+#    #+#             */
-/*   Updated: 2023/01/26 19:30:39 by daheepark        ###   ########.fr       */
+/*   Updated: 2023/02/20 18:58:14 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int swap(int *stack)
+void	swap(t_stack *stack, char name)
 {
-
+	t_node *tmp;
+	
+	if(name == 'a')
+		tmp = stack->stack_a;
+	if(name == 'b')
+		tmp = stack->stack_b;
+	
 }
 
-int push(int *stack)
+void	push(t_stack *stack, char name)
 {
-
+	t_node *tmp;
+	
+	if(name == 'a')
+		tmp = stack->stack_a;
+	if(name == 'b')
+		tmp = stack->stack_b;
 }
 
-int rotate(int *stack)
+void	rotate(t_stack *stack, char name)
 {
-
+	t_node *tmp;
+	
+	if(name == 'a')
+		tmp = stack->stack_a;
+	if(name == 'b')
+		tmp = stack->stack_b;
 }
 
-int reverse_rotate(int *stack)
+void	reverse_rotate(t_stack *stack, char name)
 {
-
+	t_node *tmp;
+	
+	if(name == 'a')
+		tmp = stack->stack_a;
+	if(name == 'b')
+		tmp = stack->stack_b;
 }

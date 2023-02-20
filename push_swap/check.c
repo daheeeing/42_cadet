@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 19:37:11 by daheepark         #+#    #+#             */
-/*   Updated: 2023/02/20 11:55:50 by dapark           ###   ########.fr       */
+/*   Updated: 2023/02/20 18:51:26 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	*make_int_array(int size, char *str)
 	return (ret);
 }
 
-int	*check_duplicate(int **tmp, int *arr_size, int size)
+int	*check_duplicate(int **tmp, int *arr_size, int size, t_stack *stack)
 {
 	int	i;
 	int	j;
@@ -109,10 +109,11 @@ int	*check_duplicate(int **tmp, int *arr_size, int size)
 			int_arr[k++] = tmp[i][j];
 	}
 	chk_duplicate(int_arr, whole_size);
+	stack->size = whole_size;
 	return (int_arr);
 }
 
-int *check(int argc, char **str)
+int *check(int argc, char **str, t_stack *stack)
 {
     int i;
 	int	**tmp;
@@ -135,7 +136,7 @@ int *check(int argc, char **str)
 		tmp[i - 1] = make_int_array(size, str[i]);
 		i++;
     }
-	int_arr = check_duplicate(tmp, size_array, argc - 1);
+	int_arr = check_duplicate(tmp, size_array, argc - 1, stack);
 	free_all(tmp, argc-1, size_array);
 	return (int_arr);
 }
