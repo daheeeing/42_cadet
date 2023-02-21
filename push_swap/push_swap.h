@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 18:43:52 by daheepark         #+#    #+#             */
-/*   Updated: 2023/02/20 18:58:14 by dapark           ###   ########.fr       */
+/*   Updated: 2023/02/21 22:28:57 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,19 @@
 
 typedef struct s_node
 {
-    int                 value;
+    int				value;
     struct s_node   *next;
 }   t_node;
 
 typedef struct s_stack
 {
-    int      size;
+    int      size[2];
     t_node   *stack_a;
     t_node   *stack_b;
 }   t_stack;
 
-int			*check(int argc, char **str, t_stack *stack);
-int			*check_duplicate(int **tmp, int *arr_size, int size, t_stack *stack);
+int			*check(int argc, char **str);
+int			*check_duplicate(int **tmp, int *arr_size, int size);
 int			*make_int_array(int size, char *str);
 int			count_num(char *str);
 void		check_int(char *str);
@@ -41,10 +41,14 @@ void		chk_duplicate(int *tmp, int	size);
 int			ft_atoi(char *str, int i);
 void		make_stack(int	*nums, t_stack *stack);
 t_node		*create_node(int value);
-void		add_node(t_node *ori_node, t_node *new, int flag);
+void		add_node(t_stack *stack, t_node *new_node, char c, int flag);
 t_node		*create_node(int value);
 void		remove_frontnode(t_stack *stack, char name);
 void		remove_backnode(t_stack *stack, char name);
+void		swap(t_stack *stack, char name);
+void		push(t_stack *stack, char name);
+void		rotate(t_stack *stack, char name);
+void		reverse_rotate(t_stack *stack, char name);
 
 void		check_stack_a(t_stack *stack);
 void		check_stack_b(t_stack *stack);

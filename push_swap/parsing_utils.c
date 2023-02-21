@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 10:52:59 by dapark            #+#    #+#             */
-/*   Updated: 2023/02/20 11:30:32 by dapark           ###   ########.fr       */
+/*   Updated: 2023/02/21 21:52:09 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,7 @@ void	chk_duplicate(int *tmp, int	size)
 		while (j < size)
 		{
 			if (chk == tmp[j])
-				// print_error(1);
-				printf("3");
+				print_error(1);
 			j++;
 		}
 		i++;

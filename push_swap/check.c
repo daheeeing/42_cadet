@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 19:37:11 by daheepark         #+#    #+#             */
-/*   Updated: 2023/02/20 18:51:26 by dapark           ###   ########.fr       */
+/*   Updated: 2023/02/21 23:23:41 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,18 @@ void	check_int(char *str)
 	while (str[i] != '\0')
 	{
 		if (str[i] == '\t' || str[i] == '\r' || str[i] == '\v'
-		|| str[i] == ' ' || str[i] == '\f' || str[i] == '\n')
+			|| str[i] == ' ' || str[i] == '\f' || str[i] == '\n')
 			i++;
 		else if (str[i] >= '0' && str[i] <= '9')
 			i++;
 		else if (str[i] == '+' || str[i] == '-')
 		{
-			if (!(str[i + 1] >= 0 && str[i + 1] <= 9))
-				printf("1");
-				// print_error(1);
+			if (!(str[i + 1] >= '0' && str[i + 1] <= '9'))
+				print_error(1);
 			i++;
 		}
 		else
-			// print_error(1);
-				printf("2");
-
+			print_error(1);
 	}
 }
 
@@ -50,8 +47,8 @@ int	count_num(char *str)
 	prev = -1;
 	while (str[i] != '\0')
 	{
-		if (str[i] == '\t' || str[i] == '\r' || str[i] == '\v'
-		|| str[i] == ' ' || str[i] == '\f' || str[i] == '\n')
+		if (str[i] == '\t' || str[i] == '\r' || str[i] == '\v' \
+			|| str[i] == ' ' || str[i] == '\f' || str[i] == '\n')
 			flag = 0;
 		if (str[i] >= '0' && str[i] <= '9')
 			flag = 1;
@@ -62,6 +59,7 @@ int	count_num(char *str)
 	}
 	return (cnt);
 }
+
 int	*make_int_array(int size, char *str)
 {
 	int	i;
@@ -73,8 +71,8 @@ int	*make_int_array(int size, char *str)
 	ret = (int *)malloc(sizeof(int) * size);
 	while (j < size)
 	{
-		while (str[i] == '\t' || str[i] == '\r' || str[i] == '\v'
-		|| str[i] == ' ' || str[i] == '\f' || str[i] == '\n')
+		while (str[i] == '\t' || str[i] == '\r' || str[i] == '\v' \
+			|| str[i] == ' ' || str[i] == '\f' || str[i] == '\n')
 			i++;
 		ret[j] = ft_atoi(str, i);
 		while ((str[i] <= '9' && str[i] >= '0') \
@@ -85,7 +83,7 @@ int	*make_int_array(int size, char *str)
 	return (ret);
 }
 
-int	*check_duplicate(int **tmp, int *arr_size, int size, t_stack *stack)
+int	*check_duplicate(int **tmp, int *arr_size, int size)
 {
 	int	i;
 	int	j;
@@ -97,7 +95,7 @@ int	*check_duplicate(int **tmp, int *arr_size, int size, t_stack *stack)
 	j = 0;
 	k = 1;
 	whole_size = 0;
-	while(i < size)
+	while (i < size)
 		whole_size += arr_size[i++];
 	int_arr = malloc(sizeof(int) * (whole_size + 1));
 	i = -1;
@@ -109,34 +107,33 @@ int	*check_duplicate(int **tmp, int *arr_size, int size, t_stack *stack)
 			int_arr[k++] = tmp[i][j];
 	}
 	chk_duplicate(int_arr, whole_size);
-	stack->size = whole_size;
 	return (int_arr);
 }
 
-int *check(int argc, char **str, t_stack *stack)
+int	*check(int argc, char **str)
 {
-    int i;
+	int	i;
 	int	**tmp;
 	int	size;
 	int	*int_arr;
 	int	*size_array;
 
-    i = 1;
-    if (argc < 2)
-        print_error(1);
+	i = 1;
+	if (argc < 2)
+		print_error(1);
 	while (str[i])
 		check_int(str[i++]);
 	i = 1;
 	tmp = (int **)malloc(sizeof(int *) * (argc - 1));
-    size_array = (int *)malloc(sizeof(int) * (argc - 1));
+	size_array = (int *)malloc(sizeof(int) * (argc - 1));
 	while (str[i])
-    {
+	{
 		size = count_num(str[i]);
 		size_array[i - 1] = size;
 		tmp[i - 1] = make_int_array(size, str[i]);
 		i++;
-    }
-	int_arr = check_duplicate(tmp, size_array, argc - 1, stack);
-	free_all(tmp, argc-1, size_array);
+	}
+	int_arr = check_duplicate(tmp, size_array, argc - 1);
+	free_all(tmp, argc - 1, size_array);
 	return (int_arr);
 }

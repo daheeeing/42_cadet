@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 18:35:11 by daheepark         #+#    #+#             */
-/*   Updated: 2023/02/20 18:50:24 by dapark           ###   ########.fr       */
+/*   Updated: 2023/02/21 23:38:02 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,18 @@ int main(int argc, char **argv)
     int		*nums;
 
 	stack = (t_stack *)malloc(sizeof(t_stack));
-	//stack = NULL;
-    nums = check(argc, argv, stack);
+	stack->size[0] = 0;
+	stack->size[1] = 0;
+    nums = check(argc, argv);
 	make_stack(nums, stack);
+	/*push(stack, 'b');
+	push(stack, 'b');
+	push(stack, 'b');
+	push(stack, 'a');
+	rotate(stack, 'a');
+	printf("함수를 거치고 나면\n");*/
+	check_stack_a(stack);
+	check_stack_b(stack);
+	//system("leaks push_swap");
 	return (0);
 }
