@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 18:43:52 by daheepark         #+#    #+#             */
-/*   Updated: 2023/02/21 22:28:57 by dapark           ###   ########.fr       */
+/*   Updated: 2023/02/23 21:47:38 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,20 @@ void		print_error(int flag);
 void		free_all(int **tmp, int size, int *tmp2);
 void		chk_duplicate(int *tmp, int	size);
 int			ft_atoi(char *str, int i);
-void		make_stack(int	*nums, t_stack *stack);
+void		make_stack_a(int	*nums, t_stack *stack);
 t_node		*create_node(int value);
 void		add_node(t_stack *stack, t_node *new_node, char c, int flag);
 t_node		*create_node(int value);
 void		remove_frontnode(t_stack *stack, char name);
 void		remove_backnode(t_stack *stack, char name);
+void		sort_nums(int *nums);
+void		index_stack(int	*nums, t_stack *stack);
 void		swap(t_stack *stack, char name);
 void		push(t_stack *stack, char name);
 void		rotate(t_stack *stack, char name);
 void		reverse_rotate(t_stack *stack, char name);
+void		push_all_to_b(t_stack *stack, int chunk, int i);
+void		push_b_to_a(t_stack *stack);
 
 void		check_stack_a(t_stack *stack);
 void		check_stack_b(t_stack *stack);

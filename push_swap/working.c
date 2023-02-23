@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 19:28:56 by daheepark         #+#    #+#             */
-/*   Updated: 2023/02/21 23:32:10 by dapark           ###   ########.fr       */
+/*   Updated: 2023/02/23 19:52:06 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ void	rotate(t_stack *stack, char name)
 	if (name == 'b')
 		stack->stack_b = stack_ab;
 	remove_frontnode(stack, name);
-	free(tmp);
 }
 
 void	reverse_rotate(t_stack *stack, char name)
@@ -116,5 +115,4 @@ void	reverse_rotate(t_stack *stack, char name)
 	if (name == 'b')
 		add_node(stack, tmp, name, 1);
 	remove_backnode(stack, name);
-	free(tmp);
 }

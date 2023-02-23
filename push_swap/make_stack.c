@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 23:36:10 by dapark            #+#    #+#             */
-/*   Updated: 2023/02/21 23:08:11 by dapark           ###   ########.fr       */
+/*   Updated: 2023/02/23 21:13:17 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ t_node	*create_node(int value)
 	t_node	*node;
 
 	node = (t_node*)malloc(sizeof(t_node));
+	if (!node)
+		print_error(0);
 	node->value = value;
 	node->next = NULL;
 	return (node);
@@ -121,7 +123,7 @@ void    remove_backnode(t_stack *stack, char name)
 		stack->size[1]--;
 }
 
-void	make_stack(int	*nums, t_stack *stack)
+void	make_stack_a(int *nums, t_stack *stack)
 {
 	int		i;
 	t_node	*tmp;

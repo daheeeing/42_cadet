@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_utils.c                                    :+:      :+:    :+:   */
+/*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 10:52:59 by dapark            #+#    #+#             */
-/*   Updated: 2023/02/21 21:52:09 by dapark           ###   ########.fr       */
+/*   Updated: 2023/02/23 22:27:57 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	chk_duplicate(int *tmp, int	size)
 	int	j;
 	int	chk;
 
-	i = 0;
+	i = 1;
 	while (i < size)
 	{
 		chk = tmp[i];
@@ -58,4 +58,51 @@ void	chk_duplicate(int *tmp, int	size)
 		i++;
 	}
 	return ;
+}
+
+void	sort_nums(int *nums)
+{
+	int	i;
+	int j;
+	int temp;
+
+	i = 1;
+	while (i < nums[0] + 1)
+	{
+		j = 1;
+		while(j < nums[0] - i)
+		{
+			if (nums[j] > nums[j + 1])
+			{
+				temp = nums[j];
+				nums[j] = nums[j + 1];
+				nums[j + 1] = temp;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+void	index_stack(int	*nums, t_stack *stack)
+{
+	int		i;
+	t_node	*tmp;
+
+	i = 1;
+	while(i <= nums[0] + 1)
+	{
+		tmp = stack->stack_a;
+		while(tmp->next != NULL)
+		{	
+			if(tmp->value == nums[i])
+			{
+				tmp->value = i;
+				break;
+			}
+			tmp = tmp->next;
+		}
+		i++;
+	}
+	free(nums);
 }
