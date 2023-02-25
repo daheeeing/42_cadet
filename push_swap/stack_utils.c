@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 10:52:59 by dapark            #+#    #+#             */
-/*   Updated: 2023/02/23 22:27:57 by dapark           ###   ########.fr       */
+/*   Updated: 2023/02/25 17:04:07 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ void	sort_nums(int *nums)
 	int temp;
 
 	i = 1;
-	while (i < nums[0] + 1)
+	while (i <= nums[0] + 1)
 	{
 		j = 1;
-		while(j < nums[0] - i)
+		while(j <= nums[0] - i)
 		{
 			if (nums[j] > nums[j + 1])
 			{
@@ -93,7 +93,7 @@ void	index_stack(int	*nums, t_stack *stack)
 	while(i <= nums[0] + 1)
 	{
 		tmp = stack->stack_a;
-		while(tmp->next != NULL)
+		while(tmp != NULL)
 		{	
 			if(tmp->value == nums[i])
 			{

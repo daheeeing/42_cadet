@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 18:35:11 by daheepark         #+#    #+#             */
-/*   Updated: 2023/02/23 21:56:07 by dapark           ###   ########.fr       */
+/*   Updated: 2023/02/25 16:58:58 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,10 @@ int main(int argc, char **argv)
 	stack->size[1] = 0;
     nums = check(argc, argv);
 	make_stack_a(nums, stack);
+	check_stack_a(stack);
+	printf("나는 바보다\n");
 	sort_nums(nums);
 	index_stack(nums, stack);
 	check_stack_a(stack);
-	free(nums);
 	return (0);
 }

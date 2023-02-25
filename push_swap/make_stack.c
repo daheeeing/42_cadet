@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 23:36:10 by dapark            #+#    #+#             */
-/*   Updated: 2023/02/23 21:13:17 by dapark           ###   ########.fr       */
+/*   Updated: 2023/02/25 16:40:45 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	check_stack_a(t_stack *stack)
 	t_node *tmp;
 
 	tmp = stack->stack_a;
-	while (tmp)
+	while (tmp != NULL)
 	{
 		printf("stack_a = %d\n",tmp->value);
 		tmp = tmp->next;
@@ -30,7 +30,7 @@ void	check_stack_b(t_stack *stack)
 	t_node *tmp;
 
 	tmp = stack->stack_b;
-	while (tmp)
+	while (tmp != NULL)
 	{
 		printf("stack_b = %d\n",tmp->value);
 		tmp = tmp->next;
