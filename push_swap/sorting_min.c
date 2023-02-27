@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:06:48 by dapark            #+#    #+#             */
-/*   Updated: 2023/02/27 17:30:51 by dapark           ###   ########.fr       */
+/*   Updated: 2023/02/27 19:19:09 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	sorting_min(t_stack *stack)
 	i = 0;
 	tmp = stack->stack_a;
 	if (stack->size[0] == 3)
-		sort_three(stack);
+		sort_three(stack, 0);
 	else if (stack->size[0] == 4)
-		sort_four(stack);
+		sort_four(stack, 1);
 	else
 	{
 		while (tmp != NULL)
@@ -32,53 +32,70 @@ void	sorting_min(t_stack *stack)
 			i++;
 			tmp = tmp->next;
 		}
-		while (i-- > 0)
-			rotate(stack, 'a');
+		move_top_min(stack, i);
 		push(stack, 'b');
-		sort_four(stack);
+		sort_four(stack, 2);
+		push(stack, 'a');
 	}
 }
 
-void	sort_four(t_stack *stack)
+void	move_top_min(t_stack *stack, int i)
+{
+	if (i == 4)
+		reverse_rotate(stack, 'a');
+	else if (i == 3)
+	{
+		reverse_rotate(stack, 'a');
+		reverse_rotate(stack, 'a');
+	}
+	else
+	{
+		while (i-- > 0)
+			rotate(stack, 'a');
+	}
+}
+
+void	sort_four(t_stack *stack, int i)
 {
 	t_node	*tmp;
-	int		i;
+	int		j;
 
-	i = 0;
+	j = 0;
 	tmp = stack->stack_a;
 	while (tmp != NULL)
 	{
-		if (tmp->value == 0)
+		if (tmp->value == 0 + i - 1)
 			break ;
-		i++;
+		j++;
 		tmp = tmp->next;
 	}
-	while (i-- > 0)
+	while (j-- > 0)
 		rotate(stack, 'a');
 	push(stack, 'b');
-	sort_three(stack);
+	sort_three(stack, i);
+	push(stack, 'a');
 }
 
-void	sort_three(t_stack *stack)
+void	sort_three(t_stack *stack, int i)
 {
 	t_node	*tmp;
 
 	tmp = stack->stack_a;
-	if (tmp->value == 0 && tmp->next->value == 2)
+	if (tmp->value == 0 + i && tmp->next->value == 2 + i)
 	{
 		swap(stack, 'a');
 		rotate(stack, 'a');
 	}
-	else if (tmp->value == 1)
+	else if (tmp->value == 1 + i)
 	{
-		if (tmp->next->value == 0)
+		if (tmp->next->value == 0 + i)
 			swap(stack, 'a');
 		else
 			reverse_rotate(stack, 'a');
 	}
-	else
+	else if (tmp->value == 2 + i)
 	{
-		if (tmp->next->value == 0)
+		if (tmp->next->value == 0 + i)
 			rotate(stack, 'a');
 		else
 		{

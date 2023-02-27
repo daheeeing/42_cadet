@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 18:43:52 by daheepark         #+#    #+#             */
-/*   Updated: 2023/02/27 17:36:33 by dapark           ###   ########.fr       */
+/*   Updated: 2023/02/27 19:15:43 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int			count_num(char *str);
 void		check_int(char *str);
 void		print_error(int flag);
 void		free_arr(int **tmp, int size, int *tmp2);
-void		free_stack(t_stack *stack);
 void		chk_duplicate(int *tmp, int size);
 int			ft_atoi(char *str, int i);
 void		make_stack_a(int	*nums, t_stack *stack);
@@ -58,7 +57,11 @@ void		sorting(t_stack *stack);
 void		print_cmd(char *cmd, char name);
 void		find_top(t_stack *stack, int top);
 void		sorting_min(t_stack *stack);
-void		sort_four(t_stack *stack);
-void		sort_three(t_stack *stack);
+void		move_top_min(t_stack *stack, int i);
+void		sort_four(t_stack *stack, int i);
+void		sort_three(t_stack *stack, int i);
+
+void	b_print(t_stack *stack);
+void	a_print(t_stack *stack);
 
 #endif

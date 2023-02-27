@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 18:35:11 by daheepark         #+#    #+#             */
-/*   Updated: 2023/02/27 17:40:48 by dapark           ###   ########.fr       */
+/*   Updated: 2023/02/27 19:01:43 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,26 +30,6 @@ void	free_arr(int **tmp, int size, int *tmp2)
 	free(tmp2);
 }
 
-void	free_stack(t_stack *stack)
-{
-	t_node	*tmp;
-
-	tmp = stack->stack_a;
-	while (tmp != NULL)
-	{
-		free(tmp);
-		tmp = tmp->next;
-	}
-	free(stack->stack_a);
-	tmp = stack->stack_b;
-	while (tmp != NULL)
-	{
-		free(tmp);
-		tmp = tmp->next;
-	}
-	free(stack->stack_b);
-}
-
 int	main(int argc, char **argv)
 {
 	t_stack	*stack;
@@ -62,6 +42,8 @@ int	main(int argc, char **argv)
 	make_stack_a(nums, stack);
 	sort_nums(nums);
 	index_stack(nums, stack);
+	//a_print(stack);
 	sorting(stack);
+	//a_print(stack);
 	return (0);
 }
