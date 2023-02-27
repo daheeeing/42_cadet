@@ -6,7 +6,7 @@
 #    By: dapark <dapark@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/26 18:40:44 by daheepark         #+#    #+#              #
-#    Updated: 2023/02/23 21:14:19 by dapark           ###   ########.fr        #
+#    Updated: 2023/02/27 17:20:32 by dapark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ SRCS =	main.c \
 		stack_utils.c \
 		make_stack.c \
 		working.c \
-		sorting.c
+		sorting.c \
+		sorting_min.c 
 	
 OBJS =	$(SRCS:.c=.o)
 

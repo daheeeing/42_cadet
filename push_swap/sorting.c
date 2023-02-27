@@ -6,14 +6,17 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 20:31:19 by dapark            #+#    #+#             */
-/*   Updated: 2023/02/25 16:10:00 by dapark           ###   ########.fr       */
+/*   Updated: 2023/02/27 17:30:24 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_all_to_b(t_stack *stack, int chunk, int i)
+void	push_all_to_b(t_stack *stack, int chunk)
 {
+	int	i;
+
+	i = 0;
 	while (stack->size[0] != 0)
 	{
 		if (stack->stack_a->value <= i)
@@ -38,12 +41,58 @@ void	push_all_to_b(t_stack *stack, int chunk, int i)
 	}
 }
 
-/*void	push_b_to_a(t_stack *stack)
+void	find_top(t_stack *stack, int top)
+{
+	t_node	*tmp;
+	int		i;
+
+	i = 0;
+	tmp = stack->stack_b;
+	while (tmp != NULL)
+	{
+		if (tmp->value == top)
+			break ;
+		i++;
+		tmp = tmp->next;
+	}
+	while (i > 0)
+	{
+		if (i > stack->size[1] / 2) //max친구를 위로 또는 아래로 보내기
+			reverse_rotate(stack, 'b');
+		else
+			rotate(stack, 'b');
+		i--;
+	}
+}
+
+void	push_b_to_a(t_stack *stack)
 {
 	while (stack->size[1] != 0)
 	{
-		sort_b(b, length);
+		find_top(stack, stack->size[1] - 1);
 		push(stack, 'a');
-		stack->size[1]	--;
 	}
-}*/
+}
+
+void	sorting(t_stack *stack)
+{
+	int	chunk;
+	int	size;
+
+	size = stack->size[0];
+	if (size == 2)
+		swap(stack, 'a');
+	else if (size <= 5)
+		sorting_min(stack);
+	else
+	{
+		if (size < 500)
+			chunk = 15;
+		else
+			chunk = 30;
+		push_all_to_b(stack, chunk);
+		push_b_to_a(stack);
+	}
+	write(1, "end\n", 4);
+	free_stack(stack);
+}

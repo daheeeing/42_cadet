@@ -6,43 +6,17 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 23:36:10 by dapark            #+#    #+#             */
-/*   Updated: 2023/02/25 16:40:45 by dapark           ###   ########.fr       */
+/*   Updated: 2023/02/27 17:37:34 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	check_stack_a(t_stack *stack)
-{
-	t_node *tmp;
-
-	tmp = stack->stack_a;
-	while (tmp != NULL)
-	{
-		printf("stack_a = %d\n",tmp->value);
-		tmp = tmp->next;
-	}
-	printf("stack_a size는 %d\n", stack->size[0]);
-}
-
-void	check_stack_b(t_stack *stack)
-{
-	t_node *tmp;
-
-	tmp = stack->stack_b;
-	while (tmp != NULL)
-	{
-		printf("stack_b = %d\n",tmp->value);
-		tmp = tmp->next;
-	}
-	printf("stack_b size는 %d\n", stack->size[1]);
-}
-
 t_node	*create_node(int value)
 {
 	t_node	*node;
 
-	node = (t_node*)malloc(sizeof(t_node));
+	node = (t_node *)malloc(sizeof(t_node));
 	if (!node)
 		print_error(0);
 	node->value = value;
@@ -52,7 +26,7 @@ t_node	*create_node(int value)
 
 void	add_node(t_stack *stack, t_node *new_node, char name, int flag)
 {
-	t_node *ori_node;
+	t_node	*ori_node;
 
 	if (name == 'a')
 		ori_node = stack->stack_a;
@@ -79,38 +53,38 @@ void	add_node(t_stack *stack, t_node *new_node, char name, int flag)
 		stack->size[1]++;
 }
 
-void    remove_frontnode(t_stack *stack, char name)
+void	remove_frontnode(t_stack *stack, char name)
 {
-    t_node *tmp;
+	t_node	*tmp;
 
-    if (name == 'a')
-    {
-        tmp = stack->stack_a->next;
-        free(stack->stack_a);
-        stack->stack_a = tmp;
+	if (name == 'a')
+	{
+		tmp = stack->stack_a->next;
+		free(stack->stack_a);
+		stack->stack_a = tmp;
 		stack->size[0]--;
-    }
-    else
-    {
-        tmp = stack->stack_b->next;
-        free(stack->stack_b);
-        stack->stack_b = tmp;
+	}
+	else
+	{
+		tmp = stack->stack_b->next;
+		free(stack->stack_b);
+		stack->stack_b = tmp;
 		stack->size[1]--;
-    }
+	}
 	return ;
 }
 
-void    remove_backnode(t_stack *stack, char name)
+void	remove_backnode(t_stack *stack, char name)
 {
-    t_node *tmp;
-	t_node *prev;
+	t_node	*tmp;
+	t_node	*prev;
 
 	tmp = NULL;
 	if (name == 'a')
 		tmp = stack->stack_a;
 	if (name == 'b')
 		tmp = stack->stack_b;
-    while (tmp->next != NULL)
+	while (tmp->next != NULL)
 	{
 		prev = tmp;
 		tmp = tmp->next;

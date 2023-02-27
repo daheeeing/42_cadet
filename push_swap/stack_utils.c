@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 10:52:59 by dapark            #+#    #+#             */
-/*   Updated: 2023/02/25 17:04:07 by dapark           ###   ########.fr       */
+/*   Updated: 2023/02/27 17:31:33 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	ft_atoi(char *str, int i)
 	return ((int)ret * (int)np);
 }
 
-void	chk_duplicate(int *tmp, int	size)
+void	chk_duplicate(int *tmp, int size)
 {
 	int	i;
 	int	j;
@@ -63,14 +63,14 @@ void	chk_duplicate(int *tmp, int	size)
 void	sort_nums(int *nums)
 {
 	int	i;
-	int j;
-	int temp;
+	int	j;
+	int	temp;
 
 	i = 1;
 	while (i <= nums[0] + 1)
 	{
 		j = 1;
-		while(j <= nums[0] - i)
+		while (j <= nums[0] - i)
 		{
 			if (nums[j] > nums[j + 1])
 			{
@@ -90,15 +90,15 @@ void	index_stack(int	*nums, t_stack *stack)
 	t_node	*tmp;
 
 	i = 1;
-	while(i <= nums[0] + 1)
+	while (i <= nums[0] + 1)
 	{
 		tmp = stack->stack_a;
-		while(tmp != NULL)
+		while (tmp != NULL)
 		{	
-			if(tmp->value == nums[i])
+			if (tmp->value == nums[i])
 			{
 				tmp->value = i;
-				break;
+				break ;
 			}
 			tmp = tmp->next;
 		}

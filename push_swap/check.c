@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 19:37:11 by daheepark         #+#    #+#             */
-/*   Updated: 2023/02/23 20:08:54 by dapark           ###   ########.fr       */
+/*   Updated: 2023/02/27 16:17:50 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,6 @@ int	*check(int argc, char **str)
 		i++;
 	}
 	int_arr = check_duplicate(tmp, size_array, argc - 1);
-	free_all(tmp, argc - 1, size_array);
+	free_arr(tmp, argc - 1, size_array);
 	return (int_arr);
 }
