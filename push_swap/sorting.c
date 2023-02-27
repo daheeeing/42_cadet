@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 20:31:19 by dapark            #+#    #+#             */
-/*   Updated: 2023/02/27 17:30:24 by dapark           ###   ########.fr       */
+/*   Updated: 2023/02/27 17:39:18 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	find_top(t_stack *stack, int top)
 	}
 	while (i > 0)
 	{
-		if (i > stack->size[1] / 2) //max친구를 위로 또는 아래로 보내기
+		if (i > stack->size[1] / 2)
 			reverse_rotate(stack, 'b');
 		else
 			rotate(stack, 'b');
