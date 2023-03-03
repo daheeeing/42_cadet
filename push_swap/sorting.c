@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 20:31:19 by dapark            #+#    #+#             */
-/*   Updated: 2023/02/27 19:24:20 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/03 22:34:46 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,20 @@ void	find_top(t_stack *stack, int top)
 		i++;
 		tmp = tmp->next;
 	}
-	while (i > 0)
+	//printf("나는 i는 = %d\n", i);
+	if (i > stack->size[1] / 2)
 	{
-		if (i > stack->size[1] / 2)
+		i = stack->size[1] - i;
+		while (i-- > 0)
 			reverse_rotate(stack, 'b');
-		else
-			rotate(stack, 'b');
-		i--;
 	}
+	else
+	{
+		while (i-- > 0)
+			rotate(stack, 'b');
+	}
+	//printf("나는 top = %d\n", top);
+	//	b_print(stack);
 }
 
 void	push_b_to_a(t_stack *stack)

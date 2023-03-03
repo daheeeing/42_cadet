@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 10:52:59 by dapark            #+#    #+#             */
-/*   Updated: 2023/02/27 18:46:37 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/03 23:27:18 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ void	chk_duplicate(int *tmp, int size)
 	int	chk;
 
 	i = 1;
-	while (i < size)
+	while (i <= size)
 	{
 		chk = tmp[i];
 		j = i + 1;
-		while (j < size)
+		while (j <= size)
 		{
 			if (chk == tmp[j])
 				print_error(1);
@@ -95,6 +95,9 @@ void	index_stack(int	*nums, t_stack *stack)
 	t_node	*tmp;
 
 	i = 1;
+	for(int k = 1; k < 31; k++)
+		printf("nums = %d\n", nums[k]);
+	printf("\n");
 	while (i <= nums[0])
 	{
 		tmp = stack->stack_a;
