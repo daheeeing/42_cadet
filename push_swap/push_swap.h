@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 18:43:52 by daheepark         #+#    #+#             */
-/*   Updated: 2023/02/27 19:15:43 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/06 01:29:29 by daheepark        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
 
 typedef struct s_node
 {
@@ -60,8 +59,6 @@ void		sorting_min(t_stack *stack);
 void		move_top_min(t_stack *stack, int i);
 void		sort_four(t_stack *stack, int i);
 void		sort_three(t_stack *stack, int i);
-
-void	b_print(t_stack *stack);
-void	a_print(t_stack *stack);
+void		cpy_int_arr(int	*store, t_stack *stack);
 
 #endif

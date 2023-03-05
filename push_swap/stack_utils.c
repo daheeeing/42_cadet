@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 10:52:59 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/03 23:27:18 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/06 01:32:00 by daheepark        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,28 +89,47 @@ void	sort_nums(int *nums)
 		exit(0);
 }
 
-void	index_stack(int	*nums, t_stack *stack)
+void	cpy_int_arr(int	*store, t_stack *stack)
 {
 	int		i;
 	t_node	*tmp;
 
+	i = 0;
+	tmp = stack->stack_a;
+	while (tmp != NULL)
+	{
+		tmp->value = store[i];
+		tmp = tmp->next;
+		i++;
+	}
+	free(store);
+}
+
+void	index_stack(int	*nums, t_stack *stack)
+{
+	int		i;
+	t_node	*tmp;
+	int		*store;
+	int		count;
+
 	i = 1;
-	for(int k = 1; k < 31; k++)
-		printf("nums = %d\n", nums[k]);
-	printf("\n");
+	store = malloc(sizeof(int) * stack->size[0]);
 	while (i <= nums[0])
 	{
 		tmp = stack->stack_a;
+		count = 0;
 		while (tmp != NULL)
 		{	
 			if (tmp->value == nums[i])
 			{
-				tmp->value = i - 1;
+				store[count] = i - 1;
 				break ;
 			}
 			tmp = tmp->next;
+			count++;
 		}
 		i++;
 	}
+	cpy_int_arr(store, stack);
 	free(nums);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 18:35:11 by daheepark         #+#    #+#             */
-/*   Updated: 2023/03/03 22:38:08 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/06 01:27:56 by daheepark        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ int	main(int argc, char **argv)
 	make_stack_a(nums, stack);
 	sort_nums(nums);
 	index_stack(nums, stack);
-	a_print(stack);
 	sorting(stack);
-	a_print(stack);
 	return (0);
 }

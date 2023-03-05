@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sorting.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 20:31:19 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/03 22:34:46 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/06 01:27:53 by daheepark        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	find_top(t_stack *stack, int top)
 		i++;
 		tmp = tmp->next;
 	}
-	//printf("나는 i는 = %d\n", i);
 	if (i > stack->size[1] / 2)
 	{
 		i = stack->size[1] - i;
@@ -67,8 +66,6 @@ void	find_top(t_stack *stack, int top)
 		while (i-- > 0)
 			rotate(stack, 'b');
 	}
-	//printf("나는 top = %d\n", top);
-	//	b_print(stack);
 }
 
 void	push_b_to_a(t_stack *stack)
@@ -99,5 +96,5 @@ void	sorting(t_stack *stack)
 		push_all_to_b(stack, chunk);
 		push_b_to_a(stack);
 	}
-	//exit(0);
+	exit(0);
 }
