@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+         #
+#    By: dapark <dapark@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/26 18:40:44 by daheepark         #+#    #+#              #
-#    Updated: 2023/03/06 01:29:55 by daheepark        ###   ########.fr        #
+#    Updated: 2023/03/06 22:12:14 by dapark           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRCS =	main.c \
 		working.c \
 		sorting.c \
 		sorting_min.c \
+		ft_str.c
 	
 OBJS =	$(SRCS:.c=.o)
 

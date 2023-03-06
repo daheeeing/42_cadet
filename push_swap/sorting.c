@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sorting.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
+/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 20:31:19 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/06 01:27:53 by daheepark        ###   ########.fr       */
+/*   Updated: 2023/03/06 21:33:27 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	push_all_to_b(t_stack *stack, int chunk)
 			stack->stack_a->value <= i + chunk)
 		{
 			push(stack, 'b');
-			rotate(stack, 'a');
+			rotate(stack, 'b');
 			i++;
 		}
 		else if ((stack->stack_a->value) > (i + chunk))
@@ -96,5 +96,4 @@ void	sorting(t_stack *stack)
 		push_all_to_b(stack, chunk);
 		push_b_to_a(stack);
 	}
-	exit(0);
 }

@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 19:28:56 by daheepark         #+#    #+#             */
-/*   Updated: 2023/02/27 17:38:33 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/06 22:12:29 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	swap(t_stack *stack, char name)
 		stack->stack_a = stack_ab;
 	if (name == 'b')
 		stack->stack_b = stack_ab;
-	print_cmd("s", name);
+	print_cmd("s", name, 0);
 }
 
 void	push(t_stack *stack, char name)
@@ -59,7 +59,7 @@ void	push(t_stack *stack, char name)
 	}
 	top = create_node(top_value);
 	add_node(stack, top, name, 1);
-	print_cmd("p", name);
+	print_cmd("p", name, 0);
 }
 
 void	rotate(t_stack *stack, char name)
@@ -88,7 +88,7 @@ void	rotate(t_stack *stack, char name)
 	if (name == 'b')
 		stack->stack_b = stack_ab;
 	remove_frontnode(stack, name);
-	print_cmd("r", name);
+	print_cmd("r", name, 0);
 }
 
 void	reverse_rotate(t_stack *stack, char name)
@@ -115,21 +115,5 @@ void	reverse_rotate(t_stack *stack, char name)
 	tmp = create_node(bottom_val);
 	add_node(stack, tmp, name, 1);
 	remove_backnode(stack, name);
-	print_cmd("rr", name);
-}
-
-void	print_cmd(char *cmd, char name)
-{
-	int		i;
-	char	c;
-
-	i = 0;
-	c = '\n';
-	while (cmd[i] != '\0')
-	{
-		write(1, &cmd[i], 1);
-		i++;
-	}
-	write(1, &name, 1);
-	write(1, &c, 1);
+	print_cmd("rr", name, 0);
 }
