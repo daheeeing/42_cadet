@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sorting.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 20:31:19 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/06 21:33:27 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/07 14:31:37 by daheepark        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,39 +32,51 @@ void	push_all_to_b(t_stack *stack, int chunk)
 			i++;
 		}
 		else if ((stack->stack_a->value) > (i + chunk))
-		{
-			if (i < stack->size[0] / 2 && i >= 0)
-				reverse_rotate(stack, 'a');
-			else
-				rotate(stack, 'a');
-		}
+			find_top(stack, i + chunk, 0, 'a');
 	}
 }
 
-void	find_top(t_stack *stack, int top)
+void	find_top(t_stack *stack, int top, int flag, char name)
 {
 	t_node	*tmp;
 	int		i;
 
-	i = 0;
-	tmp = stack->stack_b;
+	i = 0;	
+	if(name == 'a')
+		tmp = stack->stack_a;
+	if(name == 'b')
+		tmp = stack->stack_b;
 	while (tmp != NULL)
 	{
-		if (tmp->value == top)
-			break ;
+		if ((tmp->value == top && flag == 1) || \
+			(tmp->value <= top && flag == 0))
+		{
+			move_top(stack, name, i);
+			return ;
+		}
 		i++;
 		tmp = tmp->next;
 	}
-	if (i > stack->size[1] / 2)
+}
+
+void	move_top(t_stack *stack, char name, int i)
+{
+	int	size;
+
+	if(name == 'a')
+		size = stack->size[0];
+	if(name == 'b')
+		size = stack->size[1];
+	if (i > size / 2)
 	{
-		i = stack->size[1] - i;
+		i = size - i;
 		while (i-- > 0)
-			reverse_rotate(stack, 'b');
+			reverse_rotate(stack, name);
 	}
 	else
 	{
 		while (i-- > 0)
-			rotate(stack, 'b');
+			rotate(stack, name);
 	}
 }
 
@@ -72,7 +84,7 @@ void	push_b_to_a(t_stack *stack)
 {
 	while (stack->size[1] != 0)
 	{
-		find_top(stack, stack->size[1] - 1);
+		find_top(stack, stack->size[1] - 1, 1, 'b');
 		push(stack, 'a');
 	}
 }

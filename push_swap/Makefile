@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dapark <dapark@student.42.fr>              +#+  +:+       +#+         #
+#    By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/26 18:40:44 by daheepark         #+#    #+#              #
-#    Updated: 2023/03/06 22:12:14 by dapark           ###   ########.fr        #
+#    Updated: 2023/03/07 14:27:06 by daheepark        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME =	push_swap
 
 CC = cc
 
-CFLAGS = -g -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 
 SRCS =	main.c \
 		check.c \

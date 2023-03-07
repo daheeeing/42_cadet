@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 18:35:11 by daheepark         #+#    #+#             */
-/*   Updated: 2023/03/06 22:50:44 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/07 14:12:45 by daheepark        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,9 @@ void	free_arr(int **tmp, int size, int *tmp2)
 
 void	print_cmd(char *cmd, char name, int flag)
 {
-	int				i;
 	static char		*prev;
 	char			*curr;
 
-	i = -1;
 	if (flag == 1)
 	{
 		write(1, prev, ft_strlen(prev));
@@ -59,9 +57,6 @@ void	print_cmd(char *cmd, char name, int flag)
 
 void	cmp_cmd(char *prev, char *curr)
 {
-	int	i;
-
-	i = -1;
 	if ((!ft_strcmp(prev, "rb\n") && !ft_strcmp(curr, "ra\n")) || \
 		(!ft_strcmp(prev, "ra\n") && !ft_strcmp(curr, "rb\n")))
 	{

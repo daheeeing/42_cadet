@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 18:43:52 by daheepark         #+#    #+#             */
-/*   Updated: 2023/03/06 22:34:00 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/07 14:31:46 by daheepark        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,12 @@ void		push_all_to_b(t_stack *stack, int chunk);
 void		push_b_to_a(t_stack *stack);
 void		sorting(t_stack *stack);
 void		print_cmd(char *cmd, char name, int flag);
-void		find_top(t_stack *stack, int top);
+void		find_top(t_stack *stack, int top, int flag, char name);
 void		sorting_min(t_stack *stack);
 void		move_top_min(t_stack *stack, int i);
 void		sort_four(t_stack *stack, int i);
 void		sort_three(t_stack *stack, int i);
 void		cpy_int_arr(int	*store, t_stack *stack);
+void		move_top(t_stack *stack, char name, int i);
 
 #endif
