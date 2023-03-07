@@ -6,7 +6,7 @@
 /*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 20:31:19 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/07 14:31:37 by daheepark        ###   ########.fr       */
+/*   Updated: 2023/03/07 16:19:47 by daheepark        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void	find_top(t_stack *stack, int top, int flag, char name)
 	int		i;
 
 	i = 0;	
-	if(name == 'a')
+	if (name == 'a')
 		tmp = stack->stack_a;
-	if(name == 'b')
+	if (name == 'b')
 		tmp = stack->stack_b;
 	while (tmp != NULL)
 	{
@@ -63,9 +63,9 @@ void	move_top(t_stack *stack, char name, int i)
 {
 	int	size;
 
-	if(name == 'a')
+	if (name == 'a')
 		size = stack->size[0];
-	if(name == 'b')
+	if (name == 'b')
 		size = stack->size[1];
 	if (i > size / 2)
 	{
