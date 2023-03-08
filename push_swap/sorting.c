@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sorting.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
+/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 20:31:19 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/07 16:19:47 by daheepark        ###   ########.fr       */
+/*   Updated: 2023/03/08 15:17:18 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	find_top(t_stack *stack, int top, int flag, char name)
 	t_node	*tmp;
 	int		i;
 
-	i = 0;	
+	i = 0;
 	if (name == 'a')
 		tmp = stack->stack_a;
 	if (name == 'b')
