@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 21:57:17 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/13 22:25:43 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/13 22:31:20 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,10 @@ t_philo	init_philo(t_info *info)
 		philo[i].philo_num = i + 1;
 		if (i != 0)
 			philo->right_fork = i;
-		philo->left_fork = i + 1;
-		philo->end_eat = info->time_start;
-		philo->count_eat = 0;
+		philo[i].left_fork = i + 1;
+		philo[i].end_eat = info->time_start;
+		philo[i].count_eat = 0;
+		philo[i].info = info;
 		i++;
 	}
 	return (philo);
