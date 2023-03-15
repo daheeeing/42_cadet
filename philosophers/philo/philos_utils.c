@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_utils.c                                      :+:      :+:    :+:   */
+/*   philos_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 22:07:00 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/13 22:07:48 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/15 18:00:13 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,11 @@ int	ft_atoi(char *str)
 			return (-1);
 	}
 	return ((int)ret * (int)np);
+}
+
+void	print_philo_msg(int	act, t_philo *philo)
+{
+	pthread_mutex_lock(&philo->info->print_msg);
+
+	pthread_mutex_unlock(&philo->info->print_msg);	
 }
