@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 21:57:17 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/15 17:34:15 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/17 23:43:29 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int	init_info(int argc, char **argv, t_info *info)
 {
-	int	i;
+	int		i;
 
 	i = -1;
 	if (argc != 5 && argc != 6)
-		return (0);
+		return (1);
 	info->num_philos = ft_atoi(argv[1]);
 	info->time_die = ft_atoi(argv[2]);
 	info->time_eat = ft_atoi(argv[3]);
@@ -26,7 +26,9 @@ int	init_info(int argc, char **argv, t_info *info)
 	info->must_eat = -1;
 	if (argc == 6)
 		info->must_eat = ft_atoi(argv[5]);
+	info->time_start = get_time();
 	info->flag_must_eat = 0;
+	info->flag_end = 0;
 	info->forks = malloc(sizeof(pthread_mutex_t) * info->num_philos);
 	if (!info->forks)
 		return (1);
@@ -52,9 +54,8 @@ t_philo	*init_philo(t_info *info)
 	while (i < info->num_philos)
 	{
 		philo[i].philo_num = i + 1;
-		if (i != 0)
-			philo->right_fork = i;
-		philo[i].left_fork = i + 1;
+		philo[i].right_fork = i;
+		philo[i].left_fork = (i + 1) % philo->philo_num;
 		philo[i].finish_eat = info->time_start;
 		philo[i].count_eat = 0;
 		philo[i].info = info;

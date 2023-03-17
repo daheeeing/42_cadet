@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 22:07:00 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/15 18:00:13 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/17 23:45:24 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,50 @@ int	ft_atoi(char *str)
 	return ((int)ret * (int)np);
 }
 
-void	print_philo_msg(int	act, t_philo *philo)
+void	print_philo_msg(char *action, t_philo *philo)
 {
-	pthread_mutex_lock(&philo->info->print_msg);
+	size_t			print_t;
 
+	pthread_mutex_lock(&philo->info->print_msg);
+	print_t = get_time() - philo->finish_eat;
+	printf("%zu %d %s\n", print_t, philo->philo_num, action);
 	pthread_mutex_unlock(&philo->info->print_msg);	
+}
+
+void	check_must_eat(t_philo *philo)
+{
+	int	i;
+
+	i = 0;
+	while (i < philo->info->num_philos)
+	{
+		if (philo->info->must_eat > philo->count_eat)
+			break;
+		if (philo->info->must_eat <= philo->count_eat)
+			philo->info->flag_must_eat++;
+		if (philo->info->flag_must_eat == philo->info->num_philos)
+			philo->info->flag_end = 1;
+		i++;
+	}
+}
+
+void	check_philos_died(t_philo *philo, t_info *info)
+{
+	int		i;
+	size_t	curr_t;
+
+	while (!info->flag_end)
+	{
+		i = 0;
+		while (info->flag_end != 1 && i < info->num_philos)
+		{
+			curr_t = get_time();
+			if ((curr_t - philo[i].finish_eat) / 1000 > (size_t)info->time_die)
+			{	
+				philo[i].info->flag_end = 1;
+				print_philo_msg("died", philo);
+			}
+			i++;
+		}
+	}
 }
