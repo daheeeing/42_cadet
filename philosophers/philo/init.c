@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
+/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 21:57:17 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/19 22:02:36 by daheepark        ###   ########.fr       */
+/*   Updated: 2023/03/20 21:58:30 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,15 @@ int	init_info(int argc, char **argv, t_info *info)
 	info->must_eat = -1;
 	if (argc == 6)
 		info->must_eat = ft_atoi(argv[5]);
-	info->time_start = get_time();
-	info->flag_must_eat = 0;
+	info->time_start = get_time(-1);
+	info->count_must_eat = 0;
 	info->flag_end = 0;
 	info->forks = malloc(sizeof(pthread_mutex_t) * info->num_philos);
 	if (!info->forks)
 		return (1);
 	if (pthread_mutex_init(&info->print_msg, NULL) || \
-		pthread_mutex_init(&info->eat_meal, NULL))
+		pthread_mutex_init(&info->end_flag, NULL) || \
+		pthread_mutex_init(&info->must_eat_count, NULL))
 		return (1);
 	while (++i < info->num_philos)
 	{
@@ -56,8 +57,8 @@ t_philo	*init_philo(t_info *info)
 	{
 		philo[i].philo_num = i + 1;
 		philo[i].right_fork = i;
-		philo[i].left_fork = (i + 1) % philo->philo_num;
-		philo[i].finish_eat = info->time_start;
+		philo[i].left_fork = (i + 1) % info->num_philos;
+		philo[i].finish_eat = 0;
 		philo[i].count_eat = 0;
 		philo[i].info = info;
 		i++;
