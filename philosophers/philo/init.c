@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 21:57:17 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/20 21:58:30 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/20 23:14:09 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	init_info(int argc, char **argv, t_info *info)
 	info->must_eat = -1;
 	if (argc == 6)
 		info->must_eat = ft_atoi(argv[5]);
-	info->time_start = get_time(-1);
+	//info->time_start = get_time(-1, NULL);
 	info->count_must_eat = 0;
 	info->flag_end = 0;
 	info->forks = malloc(sizeof(pthread_mutex_t) * info->num_philos);
@@ -34,7 +34,8 @@ int	init_info(int argc, char **argv, t_info *info)
 		return (1);
 	if (pthread_mutex_init(&info->print_msg, NULL) || \
 		pthread_mutex_init(&info->end_flag, NULL) || \
-		pthread_mutex_init(&info->must_eat_count, NULL))
+		pthread_mutex_init(&info->must_eat_count, NULL) || \
+		pthread_mutex_init(&info->start_m, NULL))
 		return (1);
 	while (++i < info->num_philos)
 	{

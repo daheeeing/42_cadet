@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 22:07:00 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/20 22:34:26 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/20 23:22:56 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*only_one_philo(t_philo *philo)
 	print_philo_msg("has taken a fork", philo);
 	while(philo->info->flag_end != 1)
 	{
-		print_t = get_time(philo->info->time_start);
+		print_t = get_time(0, philo->info);
 		if (print_t - philo->finish_eat >= philo->info->time_die)
 			philo->info->flag_end = 1;
 	}
@@ -59,10 +59,14 @@ int	ft_atoi(char *str)
 void	print_philo_msg(char *action, t_philo *philo)
 {
 	long long	print_t;
+	int flag_end;
 
-	if (philo->info->flag_end != 1)
+	pthread_mutex_lock(&philo->info->end_flag);
+	flag_end = philo->info->flag_end;
+	pthread_mutex_unlock(&philo->info->end_flag);
+	if (flag_end != 1)
 	{	
-		print_t = get_time(philo->info->time_start);
+		print_t = get_time(0, philo->info);
 		if (print_t - philo->finish_eat >= philo->info->time_die)
 		{
 			pthread_mutex_lock(&philo->info->end_flag);
@@ -106,13 +110,19 @@ void	check_must_eat(t_philo *philo)
 
 void	ft_usleep(long long stop, t_info *info)
 {
-	
 	long long	start;
+	int			flag_end;
 
-	start = get_time(info->time_start);
-	while (!info->flag_end)
+	pthread_mutex_lock(&info->end_flag);
+	flag_end = info->flag_end;
+	pthread_mutex_unlock(&info->end_flag);
+	start = get_time(0, info);
+	while (!flag_end)
 	{
-		if (get_time(info->time_start) - start >= stop)
+		pthread_mutex_lock(&info->end_flag);
+		flag_end = info->flag_end;
+		pthread_mutex_unlock(&info->end_flag);
+		if (get_time(0, info) - start >= stop)
 			break ;
 		usleep(10);
 	}

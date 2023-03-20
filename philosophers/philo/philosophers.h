@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:52:17 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/20 22:25:47 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/20 22:53:39 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,16 @@
 typedef struct s_info
 {
 	int				num_philos;
-	long long				time_die;
-	long long				time_eat;
-	long long				time_sleep;
+	long long		time_die;
+	long long		time_eat;
+	long long		time_sleep;
 	int				must_eat;
 	int				count_must_eat;
 	int				flag_end;
 	long long		time_start;
+
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	start_m;
 	pthread_mutex_t	print_msg;
 	pthread_mutex_t	end_flag;
 	pthread_mutex_t	must_eat_count;
@@ -48,7 +50,7 @@ typedef struct s_philo
 
 int			init_info(int argc, char **argv, t_info *info);
 t_philo		*init_philo(t_info *info);
-long long	get_time(long long	start);
+long long	get_time(long long flag, t_info *info);
 int			destroy_philos(t_philo	*philo);
 int			ft_atoi(char *str);
 void		print_philo_msg(char *action, t_philo *philo);
