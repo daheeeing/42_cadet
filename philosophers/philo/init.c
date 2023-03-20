@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 21:57:17 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/17 23:43:29 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/19 22:02:36 by daheepark        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ int	init_info(int argc, char **argv, t_info *info)
 	info->forks = malloc(sizeof(pthread_mutex_t) * info->num_philos);
 	if (!info->forks)
 		return (1);
-	if (pthread_mutex_init(&info->print_msg, NULL))
+	if (pthread_mutex_init(&info->print_msg, NULL) || \
+		pthread_mutex_init(&info->eat_meal, NULL))
 		return (1);
 	while (++i < info->num_philos)
 	{

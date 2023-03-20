@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:52:17 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/17 23:30:24 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/19 22:17:31 by daheepark        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,6 @@
 # include <unistd.h>
 # include <sys/time.h>
 # include <stdio.h>
-
-# define EAT 1
-# define SLEEP 2
-# define THINK 3
-# define FORK 4
 
 typedef struct s_info
 {
@@ -36,6 +31,7 @@ typedef struct s_info
 	size_t			time_start;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_msg;
+	pthread_mutex_t	eat_meal;
 }	t_info;
 
 typedef struct s_philo
@@ -59,8 +55,7 @@ void	check_must_eat(t_philo *philo);
 void	check_philos_died(t_philo *philo, t_info *info);
 int		philos_born(t_info *info, t_philo *philo);
 void	*philos_eat(t_philo *philo);
-void	*philos_sleep(t_philo *philo);
-void	*philos_think(t_philo *philo);
+void	ft_usleep(size_t stop, t_info *info);
 void	*philos_activities(t_philo *philo);
 
 

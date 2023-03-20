@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philos_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 22:07:00 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/17 23:45:24 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/20 15:48:58 by daheepark        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	check_philos_died(t_philo *philo, t_info *info)
 	int		i;
 	size_t	curr_t;
 
-	while (!info->flag_end)
+	while (info->flag_end != 1)
 	{
 		i = 0;
 		while (info->flag_end != 1 && i < info->num_philos)
@@ -85,5 +85,18 @@ void	check_philos_died(t_philo *philo, t_info *info)
 			}
 			i++;
 		}
+	}
+}
+
+void	ft_usleep(size_t stop, t_info *info)
+{
+	size_t	start;
+
+	start = get_time();
+	while (!info->flag_end)
+	{
+		if (get_time() - start >= stop)
+			break ;
+		usleep(10);
 	}
 }
