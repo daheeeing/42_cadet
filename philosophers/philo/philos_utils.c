@@ -6,11 +6,27 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 22:07:00 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/20 22:17:18 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/20 22:34:26 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+void	*only_one_philo(t_philo *philo)
+{
+	long long	print_t;
+
+	pthread_mutex_lock(&philo->info->forks[philo->left_fork]);
+	print_philo_msg("has taken a fork", philo);
+	while(philo->info->flag_end != 1)
+	{
+		print_t = get_time(philo->info->time_start);
+		if (print_t - philo->finish_eat >= philo->info->time_die)
+			philo->info->flag_end = 1;
+	}
+	printf("%lld %d %s\n", print_t, philo->philo_num, "died");
+	return (NULL);
+}
 
 int	ft_atoi(char *str)
 {

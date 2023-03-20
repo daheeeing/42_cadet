@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:52:17 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/20 22:17:23 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/20 22:25:47 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,6 @@ int			philos_born(t_info *info, t_philo *philo);
 void		philos_eat(t_philo *philo);
 void		ft_usleep(long long stop, t_info *info);
 void		*philos_activities(t_philo *philo);
+void		*only_one_philo(t_philo *philo);
 
 #endif

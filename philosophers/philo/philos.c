@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 21:56:59 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/20 22:16:47 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/20 22:32:17 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,17 @@ int	philos_born(t_info *info, t_philo *philo)
 	int	i;
 
 	i = 0;
-	while (i < info->num_philos)
+	if (info->num_philos == 1)
+		pthread_create(&philo[i].thread, NULL, (void *)only_one_philo, (t_philo *) &philo[i]);
+	else
 	{
-		if (pthread_create(&philo[i].thread, NULL, (void *)philos_activities, (t_philo *) &philo[i]))
-			return (1);
-		i++;
-	}
+		while (i < info->num_philos)
+		{
+			if (pthread_create(&philo[i].thread, NULL, (void *)philos_activities, (t_philo *) &philo[i]))
+				return (1);
+			i++;
+		}
+	}	
 	i = 0;
 	while (i < info->num_philos)
 		pthread_join(philo[i++].thread, NULL);

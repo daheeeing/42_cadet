@@ -1,6 +1,6 @@
 NAME =	philo
 
-CFLAGS = -g -Wall -Wextra -Werror
+CFLAGS = -fsanitize=thread -g -Wall -Wextra -Werror
 
 SRCS = main.c\
 		init.c \
