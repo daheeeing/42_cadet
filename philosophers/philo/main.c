@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:55:32 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/20 23:03:14 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/21 01:56:47 by daheepark        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main(int argc, char **argv)
 	if (!info || init_info(argc, argv, info) != 0)
 		return (1);
 	philo = init_philo(info);
-	if(!philos_born(info, philo))
+	if (!philos_born(info, philo))
 		return (1);
 	destroy_philos(philo);
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philos_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 22:07:00 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/20 23:22:56 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/21 02:10:51 by daheepark        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*only_one_philo(t_philo *philo)
 
 	pthread_mutex_lock(&philo->info->forks[philo->left_fork]);
 	print_philo_msg("has taken a fork", philo);
-	while(philo->info->flag_end != 1)
+	while (philo->info->flag_end != 1)
 	{
 		print_t = get_time(0, philo->info);
 		if (print_t - philo->finish_eat >= philo->info->time_die)
@@ -59,7 +59,7 @@ int	ft_atoi(char *str)
 void	print_philo_msg(char *action, t_philo *philo)
 {
 	long long	print_t;
-	int flag_end;
+	int			flag_end;
 
 	pthread_mutex_lock(&philo->info->end_flag);
 	flag_end = philo->info->flag_end;
@@ -79,7 +79,7 @@ void	print_philo_msg(char *action, t_philo *philo)
 		}
 		pthread_mutex_lock(&philo->info->print_msg);
 		printf("%lld %d %s\n", print_t, philo->philo_num, action);
-		pthread_mutex_unlock(&philo->info->print_msg);	
+		pthread_mutex_unlock(&philo->info->print_msg);
 	}
 }
 
@@ -91,7 +91,7 @@ void	check_must_eat(t_philo *philo)
 	while (i < philo->info->num_philos)
 	{
 		if (philo->info->must_eat > philo->count_eat)
-			break;
+			break ;
 		if (philo->info->must_eat <= philo->count_eat)
 		{
 			pthread_mutex_lock(&philo->info->must_eat_count);

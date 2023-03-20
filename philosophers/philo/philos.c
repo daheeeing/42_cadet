@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philos.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 21:56:59 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/20 23:14:14 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/21 02:07:38 by daheepark        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,16 @@ int	philos_born(t_info *info, t_philo *philo)
 	int	i;
 
 	i = 0;
-
 	info->time_start = get_time(-1, NULL);
 	if (info->num_philos == 1)
-		pthread_create(&philo[i].thread, NULL, (void *)only_one_philo, (t_philo *) &philo[i]);
+		pthread_create(&philo[i].thread, NULL, \
+		(void *)only_one_philo, (t_philo *) &philo[i]);
 	else
 	{
 		while (i < info->num_philos)
 		{
-			if (pthread_create(&philo[i].thread, NULL, (void *)philos_activities, (t_philo *) &philo[i]))
+			if (pthread_create(&philo[i].thread, NULL, \
+			(void *)philos_activities, (t_philo *) &philo[i]))
 				return (1);
 			i++;
 		}
@@ -62,7 +63,7 @@ void	*philos_activities(t_philo *philo)
 	pthread_mutex_lock(&philo->info->end_flag);
 	flag_end = philo->info->flag_end;
 	pthread_mutex_unlock(&philo->info->end_flag);
-	while(flag_end != 1)
+	while (flag_end != 1)
 	{
 		philos_eat(philo);
 		print_philo_msg("is sleeping", philo);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:52:17 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/20 22:53:39 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/21 02:03:47 by daheepark        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_philo
 }	t_philo;
 
 int			init_info(int argc, char **argv, t_info *info);
+int			mutex_init_check_error(t_info *info);
 t_philo		*init_philo(t_info *info);
 long long	get_time(long long flag, t_info *info);
 int			destroy_philos(t_philo	*philo);

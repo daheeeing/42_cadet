@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 21:57:17 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/20 23:14:09 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/21 02:07:33 by daheepark        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 int	init_info(int argc, char **argv, t_info *info)
 {
-	int		i;
-
-	i = -1;
 	if (argc != 5 && argc != 6)
 		return (1);
 	info->num_philos = ft_atoi(argv[1]);
@@ -32,6 +29,19 @@ int	init_info(int argc, char **argv, t_info *info)
 	info->forks = malloc(sizeof(pthread_mutex_t) * info->num_philos);
 	if (!info->forks)
 		return (1);
+	if (mutex_init_check_error(info) != 0)
+		return (1);
+	return (0);
+}
+
+int	mutex_init_check_error(t_info *info)
+{
+	int	i;
+
+	i = -1;
+	if (info->num_philos < 1 || info->time_die < 0 || \
+		info->time_eat < 0 || info->time_sleep < 0)
+		return (1);
 	if (pthread_mutex_init(&info->print_msg, NULL) || \
 		pthread_mutex_init(&info->end_flag, NULL) || \
 		pthread_mutex_init(&info->must_eat_count, NULL) || \
@@ -39,7 +49,7 @@ int	init_info(int argc, char **argv, t_info *info)
 		return (1);
 	while (++i < info->num_philos)
 	{
-		if(pthread_mutex_init(&info->forks[i], NULL))
+		if (pthread_mutex_init(&info->forks[i], NULL))
 			return (1);
 	}
 	return (0);
