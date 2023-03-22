@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 21:57:17 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/22 21:21:38 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/22 22:30:54 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	mutex_init_check_error(t_info *info)
 		info->time_eat < 0 || info->time_sleep < 0)
 		return (1);
 	if (pthread_mutex_init(&info->print_msg_m, NULL) || \
+		pthread_mutex_init(&info->ch, NULL) || \
 		pthread_mutex_init(&info->flag_end_m, NULL))
 		return (1);
 	while (++i < info->num_philos)

@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:52:17 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/22 21:29:02 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/22 22:30:36 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_info
 	pthread_mutex_t	*forks_m;
 	pthread_mutex_t	print_msg_m;
 	pthread_mutex_t	flag_end_m;
+	pthread_mutex_t	ch;
 }	t_info;
 
 typedef struct s_philo
