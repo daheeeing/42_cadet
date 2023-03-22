@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
+/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:55:32 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/21 01:56:47 by daheepark        ###   ########.fr       */
+/*   Updated: 2023/03/22 20:55:12 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-long long	get_time(long long flag, t_info *info)
+long long	get_time(long long flag, t_philo *philo)
 {
 	long long		curr_t;
 	long long		ret;
@@ -24,11 +24,25 @@ long long	get_time(long long flag, t_info *info)
 		return (curr_t);
 	else
 	{
-		pthread_mutex_lock(&info->start_m);
-		ret = curr_t - info->time_start;
-		pthread_mutex_unlock(&info->start_m);
+		ret = curr_t - philo->info->time_start;
 		return (ret);
 	}
+}
+
+int	destroy_philos(t_philo	*philo)
+{
+	int	i;
+
+	i = 0;
+	while (i < philo->info->num_philos)
+	{
+		pthread_mutex_destroy(&philo->info->forks_m[i]);
+		i++;
+	}
+	free(philo->info->forks_m);
+	pthread_mutex_destroy(&philo->info->print_msg_m);
+	pthread_mutex_destroy(&philo->info->flag_end_m);
+	return (0);
 }
 
 int	main(int argc, char **argv)

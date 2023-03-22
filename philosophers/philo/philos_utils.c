@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philos_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
+/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 22:07:00 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/21 02:10:51 by daheepark        ###   ########.fr       */
+/*   Updated: 2023/03/22 21:54:10 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 void	*only_one_philo(t_philo *philo)
 {
-	long long	print_t;
+	long long	print_time;
 
-	pthread_mutex_lock(&philo->info->forks[philo->left_fork]);
+	pthread_mutex_lock(&philo->info->forks_m[philo->left_fork]);
 	print_philo_msg("has taken a fork", philo);
 	while (philo->info->flag_end != 1)
 	{
-		print_t = get_time(0, philo->info);
-		if (print_t - philo->finish_eat >= philo->info->time_die)
+		print_time = get_time(0, philo);
+		if (print_time - philo->finish_eat >= philo->info->time_die)
 			philo->info->flag_end = 1;
 	}
-	printf("%lld %d %s\n", print_t, philo->philo_num, "died");
+	printf("%lld %d %s\n", print_time, philo->philo_num, "died");
 	return (NULL);
 }
 
@@ -58,71 +58,46 @@ int	ft_atoi(char *str)
 
 void	print_philo_msg(char *action, t_philo *philo)
 {
-	long long	print_t;
+	long long	print_time;
 	int			flag_end;
 
-	pthread_mutex_lock(&philo->info->end_flag);
+	pthread_mutex_lock(&philo->info->flag_end_m);
 	flag_end = philo->info->flag_end;
-	pthread_mutex_unlock(&philo->info->end_flag);
+	pthread_mutex_unlock(&philo->info->flag_end_m);
 	if (flag_end != 1)
 	{	
-		print_t = get_time(0, philo->info);
-		if (print_t - philo->finish_eat >= philo->info->time_die)
+		print_time = get_time(0, philo);
+		if (print_time - philo->finish_eat > philo->info->time_die)
 		{
-			pthread_mutex_lock(&philo->info->end_flag);
+			pthread_mutex_lock(&philo->info->flag_end_m);
 			philo->info->flag_end = 1;
-			pthread_mutex_unlock(&philo->info->end_flag);
-			pthread_mutex_lock(&philo->info->print_msg);
-			printf("%lld %d %s\n", print_t, philo->philo_num, "died");
-			pthread_mutex_unlock(&philo->info->print_msg);
+			pthread_mutex_unlock(&philo->info->flag_end_m);
+			pthread_mutex_lock(&philo->info->print_msg_m);
+			printf("%lld %d %s\n", print_time, philo->philo_num, "died");
+			pthread_mutex_unlock(&philo->info->print_msg_m);
 			return ;
 		}
-		pthread_mutex_lock(&philo->info->print_msg);
-		printf("%lld %d %s\n", print_t, philo->philo_num, action);
-		pthread_mutex_unlock(&philo->info->print_msg);
+		pthread_mutex_lock(&philo->info->print_msg_m);
+		printf("%lld %d %s\n", print_time, philo->philo_num, action);
+		pthread_mutex_unlock(&philo->info->print_msg_m);
 	}
 }
 
-void	check_must_eat(t_philo *philo)
-{
-	int	i;
-
-	i = 0;
-	while (i < philo->info->num_philos)
-	{
-		if (philo->info->must_eat > philo->count_eat)
-			break ;
-		if (philo->info->must_eat <= philo->count_eat)
-		{
-			pthread_mutex_lock(&philo->info->must_eat_count);
-			philo->info->count_must_eat++;
-			pthread_mutex_unlock(&philo->info->must_eat_count);
-		}
-		if (philo->info->count_must_eat == philo->info->num_philos)
-		{
-			pthread_mutex_lock(&philo->info->end_flag);
-			philo->info->flag_end = 1;
-			pthread_mutex_unlock(&philo->info->end_flag);
-		}
-		i++;
-	}
-}
-
-void	ft_usleep(long long stop, t_info *info)
+void	ft_usleep(long long stop, t_philo *philo)
 {
 	long long	start;
 	int			flag_end;
 
-	pthread_mutex_lock(&info->end_flag);
-	flag_end = info->flag_end;
-	pthread_mutex_unlock(&info->end_flag);
-	start = get_time(0, info);
+	pthread_mutex_lock(&philo->info->flag_end_m);
+	flag_end = philo->info->flag_end;
+	pthread_mutex_unlock(&philo->info->flag_end_m);
+	start = get_time(0, philo);
 	while (!flag_end)
 	{
-		pthread_mutex_lock(&info->end_flag);
-		flag_end = info->flag_end;
-		pthread_mutex_unlock(&info->end_flag);
-		if (get_time(0, info) - start >= stop)
+		pthread_mutex_lock(&philo->info->flag_end_m);
+		flag_end = philo->info->flag_end;
+		pthread_mutex_unlock(&philo->info->flag_end_m);
+		if (get_time(0, philo) - start >= stop)
 			break ;
 		usleep(10);
 	}
