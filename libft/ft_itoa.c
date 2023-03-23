@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 11:14:11 by dapark            #+#    #+#             */
-/*   Updated: 2022/07/19 16:29:02 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/23 22:10:52 by daheepark        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,8 @@ char	*ft_itoa(int n)
 {
 	char		*tmp;
 	int			size;
-	int			i;
 	long long	num1;
 
-	i = 0;
 	num1 = n;
 	size = str_size(num1);
 	tmp = malloc(sizeof(char) * (size + 1));
