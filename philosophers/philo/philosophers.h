@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:52:17 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/22 22:30:36 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/24 17:16:28 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ typedef struct s_info
 	pthread_mutex_t	*forks_m;
 	pthread_mutex_t	print_msg_m;
 	pthread_mutex_t	flag_end_m;
-	pthread_mutex_t	ch;
 }	t_info;
 
 typedef struct s_philo
@@ -52,6 +51,7 @@ t_philo		*init_philo(t_info *info);
 long long	get_time(long long flag, t_philo *philo);
 int			destroy_philos(t_philo	*philo);
 int			ft_atoi(char *str);
+int			check_int(char *str);
 void		print_philo_msg(char *action, t_philo *philo);
 int			philos_born(t_info *info, t_philo *philo);
 void		philos_eat(t_philo *philo);

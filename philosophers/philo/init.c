@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 21:57:17 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/22 22:30:54 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/24 17:16:55 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,18 @@ int	init_info(int argc, char **argv, t_info *info)
 	i = -1;
 	if (argc != 5 && argc != 6)
 		return (1);
-	info->num_philos = ft_atoi(argv[1]);
-	info->time_die = ft_atoi(argv[2]);
-	info->time_eat = ft_atoi(argv[3]);
-	info->time_sleep = ft_atoi(argv[4]);
+	info->num_philos = check_int(argv[1]);
+	info->time_die = check_int(argv[2]);
+	info->time_eat = check_int(argv[3]);
+	info->time_sleep = check_int(argv[4]);
 	info->must_eat = -1;
 	if (argc == 6)
-		info->must_eat = ft_atoi(argv[5]);
+		info->must_eat = check_int(argv[5]);
 	info->flag_end = 0;
+	if (info->num_philos < 1 || info->time_die < 0 || \
+		info->time_eat < 0 || info->time_sleep < 0 || \
+		info->must_eat == 0)
+		return (1);
 	info->forks_m = malloc(sizeof(pthread_mutex_t) * info->num_philos);
 	if (!info->forks_m)
 		return (1);
@@ -40,11 +44,7 @@ int	mutex_init_check_error(t_info *info)
 	int	i;
 
 	i = -1;
-	if (info->num_philos < 1 || info->time_die < 0 || \
-		info->time_eat < 0 || info->time_sleep < 0)
-		return (1);
 	if (pthread_mutex_init(&info->print_msg_m, NULL) || \
-		pthread_mutex_init(&info->ch, NULL) || \
 		pthread_mutex_init(&info->flag_end_m, NULL))
 		return (1);
 	while (++i < info->num_philos)

@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:55:32 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/22 23:38:51 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/24 17:03:45 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,32 @@ int	destroy_philos(t_philo	*philo)
 	free(philo->info->forks_m);
 	pthread_mutex_destroy(&philo->info->print_msg_m);
 	pthread_mutex_destroy(&philo->info->flag_end_m);
+	free(philo->info);
 	return (0);
 }
+
+/*void	monitoring(t_philo *philo)
+{
+	int	i;
+	int	end_flag;
+
+	i = 0;
+	pthread_mutex_lock(&philo->info->flag_end_m);
+	end_flag = philo->info->flag_end;
+	pthread_mutex_unlock(&philo->info->flag_end_m);
+	while (end_flag != 1)
+	{
+		while (philo[i].count_eat == philo->info->must_eat)
+		{
+			pthread_mutex_lock(&philo->info->flag_end_m);
+			philo->info->flag_end = 1;
+			pthread_mutex_unlock(&philo->info->flag_end_m);
+			printf("%d\n", end_flag);
+		}
+		i++;
+	}
+	pthread_detach(philo->thread);
+}*/
 
 int	main(int argc, char **argv)
 {
@@ -56,7 +80,6 @@ int	main(int argc, char **argv)
 	philo = init_philo(info);
 	if (!philos_born(info, philo))
 		return (1);
-	//monitoring(philo);
 	destroy_philos(philo);
 	return (0);
 }
