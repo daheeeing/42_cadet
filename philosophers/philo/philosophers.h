@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:52:17 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/24 17:16:28 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/24 17:32:34 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int			destroy_philos(t_philo	*philo);
 int			ft_atoi(char *str);
 int			check_int(char *str);
 void		print_philo_msg(char *action, t_philo *philo);
+void		print_died(t_philo *philo, long long print_time);
 int			philos_born(t_info *info, t_philo *philo);
 void		philos_eat(t_philo *philo);
 void		ft_usleep(long long stop, t_philo *philo);

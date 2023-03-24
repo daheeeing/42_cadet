@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 22:07:00 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/24 17:14:27 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/24 17:45:13 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ int	check_int(char *str)
 		else if (str[i] == '+' || str[i] == '-')
 		{
 			if (!(str[i + 1] >= '0' && str[i + 1] <= '9'))
-				return (-1);
+				return (-2);
 			i++;
 		}
 		else
-			return (-1);
+			return (-2);
 	}
 	return (ft_atoi(str));
 }
@@ -94,38 +94,29 @@ void	print_philo_msg(char *action, t_philo *philo)
 		print_time = get_time(0, philo);
 		if (print_time - philo->finish_eat > philo->info->time_die)
 		{
-			pthread_mutex_lock(&philo->info->flag_end_m);
-			philo->info->flag_end = 1;
-			pthread_mutex_unlock(&philo->info->flag_end_m);
-			printf("%lld %d %s\n", print_time, philo->philo_num, "died");
-			pthread_mutex_unlock(&philo->info->print_msg_m);
+			print_died(philo, print_time);
 			return ;
 		}
 		pthread_mutex_lock(&philo->info->flag_end_m);
 		end_flag = philo->info->flag_end;
 		pthread_mutex_unlock(&philo->info->flag_end_m);
 		if (end_flag != 1)
-			printf("%lld %d %s\n", print_time, philo->philo_num, action);		
+			printf("%lld %d %s\n", print_time, philo->philo_num, action);
 		pthread_mutex_unlock(&philo->info->print_msg_m);
 	}
 }
 
-void	ft_usleep(long long stop, t_philo *philo)
+void	print_died(t_philo *philo, long long print_time)
 {
-	long long	start;
-	int			flag_end;
+	int	flag;
 
-	start = get_time(0, philo);
 	pthread_mutex_lock(&philo->info->flag_end_m);
-	flag_end = philo->info->flag_end;
+	flag = philo->info->flag_end;
 	pthread_mutex_unlock(&philo->info->flag_end_m);
-	while (!flag_end)
-	{
-		pthread_mutex_lock(&philo->info->flag_end_m);
-		flag_end = philo->info->flag_end;
-		pthread_mutex_unlock(&philo->info->flag_end_m);
-		if (get_time(0, philo) - start >= stop)
-			break; ;
-		usleep(100);
-	}
+	if (flag != 1)
+		printf("%lld %d %s\n", print_time, philo->philo_num, "died");
+	pthread_mutex_lock(&philo->info->flag_end_m);
+	philo->info->flag_end = 1;
+	pthread_mutex_unlock(&philo->info->flag_end_m);
+	pthread_mutex_unlock(&philo->info->print_msg_m);
 }

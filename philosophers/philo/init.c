@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 21:57:17 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/24 17:16:55 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/24 17:35:42 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	init_info(int argc, char **argv, t_info *info)
 	info->flag_end = 0;
 	if (info->num_philos < 1 || info->time_die < 0 || \
 		info->time_eat < 0 || info->time_sleep < 0 || \
-		info->must_eat == 0)
+		info->must_eat == 0 || info->must_eat < -1)
 		return (1);
 	info->forks_m = malloc(sizeof(pthread_mutex_t) * info->num_philos);
 	if (!info->forks_m)

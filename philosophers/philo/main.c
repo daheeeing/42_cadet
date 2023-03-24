@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:55:32 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/24 17:03:45 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/24 17:29:58 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,26 @@ long long	get_time(long long flag, t_philo *philo)
 	}
 }
 
+void	ft_usleep(long long stop, t_philo *philo)
+{
+	long long	start;
+	int			flag_end;
+
+	start = get_time(0, philo);
+	pthread_mutex_lock(&philo->info->flag_end_m);
+	flag_end = philo->info->flag_end;
+	pthread_mutex_unlock(&philo->info->flag_end_m);
+	while (!flag_end)
+	{
+		pthread_mutex_lock(&philo->info->flag_end_m);
+		flag_end = philo->info->flag_end;
+		pthread_mutex_unlock(&philo->info->flag_end_m);
+		if (get_time(0, philo) - start >= stop)
+			break ;
+		usleep(100);
+	}
+}
+
 int	destroy_philos(t_philo	*philo)
 {
 	int	i;
@@ -45,29 +65,6 @@ int	destroy_philos(t_philo	*philo)
 	free(philo->info);
 	return (0);
 }
-
-/*void	monitoring(t_philo *philo)
-{
-	int	i;
-	int	end_flag;
-
-	i = 0;
-	pthread_mutex_lock(&philo->info->flag_end_m);
-	end_flag = philo->info->flag_end;
-	pthread_mutex_unlock(&philo->info->flag_end_m);
-	while (end_flag != 1)
-	{
-		while (philo[i].count_eat == philo->info->must_eat)
-		{
-			pthread_mutex_lock(&philo->info->flag_end_m);
-			philo->info->flag_end = 1;
-			pthread_mutex_unlock(&philo->info->flag_end_m);
-			printf("%d\n", end_flag);
-		}
-		i++;
-	}
-	pthread_detach(philo->thread);
-}*/
 
 int	main(int argc, char **argv)
 {
