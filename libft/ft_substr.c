@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
+/*   By: daheepark <daheepark@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 20:23:55 by dapark            #+#    #+#             */
-/*   Updated: 2022/07/21 20:07:37 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/23 22:10:13 by daheepark        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 size_t	lenlen(char const *str, unsigned int i, size_t len)
 {
 	size_t	size;
-	size_t	start;
+//	size_t	start;
 
-	start = i;
+//x	start = i;
 	size = ft_strlen(str) - i + 1;
 	if (size < len)
 		return (size);
