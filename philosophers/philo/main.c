@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:55:32 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/31 20:39:21 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/31 20:41:42 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 long long	get_time(long long flag, t_philo *philo)
 {
-	long long		curr_t;
+	long long		curr_time;
 	long long		ret;
 	struct timeval	curr;
 
 	gettimeofday(&curr, NULL);
-	curr_t = (curr.tv_sec * 1000000 + curr.tv_usec) / 1000;
+	curr_time = (curr.tv_sec * 1000000 + curr.tv_usec) / 1000;
 	if (flag == -1)
-		return (curr_t);
+		return (curr_time);
 	else
 	{
-		ret = curr_t - philo->info->time_start;
+		ret = curr_time - philo->info->time_start;
 		return (ret);
 	}
 }
