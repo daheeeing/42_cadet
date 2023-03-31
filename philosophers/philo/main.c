@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:55:32 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/31 20:31:06 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/31 20:39:21 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	main(int argc, char **argv)
 	if (!info || init_info(argc, argv, info) != 0)
 		return (1);
 	philo = init_philo(info);
-	if (!philos_born(info, philo))
+	if (philos_born(info, philo) != 0)
 		return (1);
 	destroy_philos(philo);
 	return (0);
