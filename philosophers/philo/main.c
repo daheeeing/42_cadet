@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:55:32 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/24 17:29:58 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/31 15:11:57 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,12 @@ void	ft_usleep(long long stop, t_philo *philo)
 		pthread_mutex_lock(&philo->info->flag_end_m);
 		flag_end = philo->info->flag_end;
 		pthread_mutex_unlock(&philo->info->flag_end_m);
+		if (get_time(0, philo) - philo->finish_eat > philo->info->time_die)
+		{
+			pthread_mutex_lock(&philo->info->print_msg_m);
+			print_died(philo, get_time(0, philo));
+			break ;
+		}
 		if (get_time(0, philo) - start >= stop)
 			break ;
 		usleep(100);
