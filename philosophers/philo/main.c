@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:55:32 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/31 20:41:42 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/31 21:07:15 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int	destroy_philos(t_philo	*philo)
 	pthread_mutex_destroy(&philo->info->count_must_eat_m);
 	pthread_mutex_destroy(&philo->info->check_m);
 	free(philo->info);
+	free(philo);
 	return (0);
 }
 
