@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 22:07:00 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/31 18:33:14 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/31 20:26:38 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,11 +93,6 @@ void	print_philo_msg(char *action, t_philo *philo)
 	{
 		pthread_mutex_lock(&philo->info->print_msg_m);
 		print_time = get_time(0, philo);
-		if (print_time - philo->finish_eat > philo->info->time_die)
-		{
-			print_died(philo, print_time);
-			return ;
-		}
 		pthread_mutex_lock(&philo->info->flag_end_m);
 		end_flag = philo->info->flag_end;
 		pthread_mutex_unlock(&philo->info->flag_end_m);

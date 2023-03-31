@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 21:57:17 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/24 17:35:42 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/31 20:32:59 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	init_info(int argc, char **argv, t_info *info)
 	info->time_eat = check_int(argv[3]);
 	info->time_sleep = check_int(argv[4]);
 	info->must_eat = -1;
+	info->count_must_eat = 0;
 	if (argc == 6)
 		info->must_eat = check_int(argv[5]);
 	info->flag_end = 0;
@@ -45,7 +46,9 @@ int	mutex_init_check_error(t_info *info)
 
 	i = -1;
 	if (pthread_mutex_init(&info->print_msg_m, NULL) || \
-		pthread_mutex_init(&info->flag_end_m, NULL))
+		pthread_mutex_init(&info->flag_end_m, NULL) || \
+		pthread_mutex_init(&info->count_must_eat_m, NULL) || \
+		pthread_mutex_init(&info->check_m, NULL))
 		return (1);
 	while (++i < info->num_philos)
 	{

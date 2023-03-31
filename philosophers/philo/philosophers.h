@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 17:52:17 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/24 17:32:34 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/31 20:30:47 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,14 @@ typedef struct s_info
 	long long		time_eat;
 	long long		time_sleep;
 	int				must_eat;
+	int				count_must_eat;
 	int				flag_end;
 	long long		time_start;
 
 	pthread_mutex_t	*forks_m;
 	pthread_mutex_t	print_msg_m;
+	pthread_mutex_t	count_must_eat_m;
+	pthread_mutex_t	check_m;
 	pthread_mutex_t	flag_end_m;
 }	t_info;
 
@@ -59,5 +62,7 @@ void		philos_eat(t_philo *philo);
 void		ft_usleep(long long stop, t_philo *philo);
 void		*philos_activities(t_philo *philo);
 void		*only_one_philo(t_philo *philo);
+int			check_end(t_philo *philo, int i);
+void		monitoring(t_philo *philo);
 
 #endif
