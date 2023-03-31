@@ -6,7 +6,7 @@
 /*   By: dapark <dapark@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 21:56:59 by dapark            #+#    #+#             */
-/*   Updated: 2023/03/31 20:35:14 by dapark           ###   ########.fr       */
+/*   Updated: 2023/03/31 21:01:04 by dapark           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int	philos_born(t_info *info, t_philo *philo)
 				return (1);
 			i++;
 		}
+		monitoring(philo);
 	}
-	monitoring(philo);
 	i = 0;
 	while (i < info->num_philos)
 		pthread_join(philo[i++].thread, NULL);
