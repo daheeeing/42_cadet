@@ -12,9 +12,9 @@ int main()
 		std::cout << f << std::endl;
 		
         a.signForm(f);
-		a.incrementBureaucratGrade();
 		std::cout << a << std::endl;
 		std::cout << std::endl;
+		a.incrementBureaucratGrade();
 	}
 	catch(const std::exception& e)
 	{
