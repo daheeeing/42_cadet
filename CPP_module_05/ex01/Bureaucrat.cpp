@@ -3,9 +3,7 @@
 
 Bureaucrat::Bureaucrat()
     :name("default"), grade(1)
-{
-
-}
+{}
 
 Bureaucrat::Bureaucrat(std::string name, int grade)
     :name(name), grade(grade)
@@ -18,9 +16,7 @@ Bureaucrat::Bureaucrat(std::string name, int grade)
 
 Bureaucrat::Bureaucrat(const Bureaucrat &ref)
     :name(ref.name), grade(ref.grade)
-{
-
-}
+{}
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat &ref)
 {

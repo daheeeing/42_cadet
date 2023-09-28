@@ -3,22 +3,25 @@
 
 int main()
 {
-    try
+	try
 	{
-		Bureaucrat a("Tom", 51);
-        Form f("form1", false, 50, 50);
+		//Bureaucrat b("dapark", 1);
+		Bureaucrat b("dapark", 3);
+		Form f("Form", 1, 2);
+		//Form f("Form", 0, 2);
+		//Form("Form", 2, 2);
 
-		std::cout << a << std::endl;
+		std::cout << b << std::endl;
 		std::cout << f << std::endl;
-		
-        a.signForm(f);
-		std::cout << a << std::endl;
-		std::cout << std::endl;
-		a.incrementBureaucratGrade();
+
+		f.beSigned(b);
+		b.signForm(f);
+		std::cout << f << std::endl;
 	}
-	catch(const std::exception& e)
+	catch (std::exception & e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << e.what() << std::endl;
 	}
-    return (0);
+
+	return 0;
 }

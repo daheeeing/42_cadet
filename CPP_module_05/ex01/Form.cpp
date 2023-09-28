@@ -6,8 +6,8 @@ Form::Form()
 
 }
 
-Form::Form(std::string name, bool sign, const int signGrade, const int execGrade)
-    :name(name), sign(sign), signGrade(signGrade), execGrade(execGrade)
+Form::Form(std::string name, const int signGrade, const int execGrade)
+    :name(name), signGrade(signGrade), execGrade(execGrade)
 {
     if (signGrade < 1 || execGrade < 1)
         throw GradeTooHighException();
@@ -28,7 +28,7 @@ Form& Form::operator=(const Form &ref)
         const_cast<std::string&>(name) = ref.getName();
         const_cast<int&>(signGrade) = ref.getSignGrade();
         const_cast<int&>(execGrade) = ref.getExecGrade();
-        sign = ref.sign;
+        sign = ref.getSigned();
     }
     return (*this);
 }
