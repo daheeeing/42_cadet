@@ -60,6 +60,7 @@ void Bureaucrat::signForm(AForm &formRef)
 {
     bool chk;
 
+    formRef.beSigned(*this);
     chk = formRef.getSigned();
     if (chk == true)
         std::cout << this->getName() << " signed " <<  formRef.getName() << std::endl;
@@ -67,9 +68,19 @@ void Bureaucrat::signForm(AForm &formRef)
         std::cout << this->getName() << " couldn't sign " <<  formRef.getName() << " because the grade is too low." << std::endl;
 }
 
-void executeForm(AForm const & form)
+void Bureaucrat::executeForm(AForm const & form)
 {
-
+    if (form.getSigned() == false)
+	{
+		std::cerr << this->name << " couldn’t execute " << form.getName() << ". ";
+		throw AForm::IsNotSignedException();
+	}
+	if (grade > form.getExecGrade())
+	{
+		std::cerr << this->name << " couldn’t execute " << form.getName() << ". ";
+		throw GradeTooLowException();	
+	}
+	form.execute(*this);
 }
 
 const char * Bureaucrat::GradeTooHighException::what(void) const throw()
