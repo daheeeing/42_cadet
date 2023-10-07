@@ -9,8 +9,7 @@ Serializer::Serializer(const Serializer &ref)
 
 Serializer&	Serializer::operator=(const Serializer &ref)
 {
-	(void)ref;
-	return (*this);
+	
 }
 
 Serializer::~Serializer() {}

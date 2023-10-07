@@ -5,15 +5,14 @@ int main()
 {
 	try
 	{
-		Bureaucrat b("dapark", 1);
-		//Bureaucrat b("dapark", 3);
-		//Form f("Form", 1, 2);
+		//Bureaucrat b("dapark", 1);
+		Bureaucrat b("dapark", 3);
+		Form f("Form", 1, 2);
 		//Form f("Form", 0, 2);
-		Form f("Form", 2, 2);
+		//Form f("Form", 2, 2);
 
 		std::cout << b << std::endl;
 		std::cout << f << std::endl;
-		f.beSigned(b);
 		b.signForm(f);
 		std::cout << f << std::endl;
 	}

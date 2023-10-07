@@ -60,6 +60,7 @@ void Bureaucrat::signForm(Form &formRef)
 {
     bool chk;
 
+    formRef.beSigned(*this);
     chk = formRef.getSigned();
     if (chk == true)
         std::cout << this->getName() << " signed " <<  formRef.getName() << std::endl;

@@ -53,10 +53,16 @@ bool Form::getSigned() const
 
 void Form::beSigned(Bureaucrat &bur)
 {
-    if (bur.getGrade() <= this->signGrade)
+    try {
+    if (bur.getGrade() <= this->getSignGrade())
         this->sign = true;
     else
         throw GradeTooLowException();
+    }
+    catch(std::exception &err)
+    {
+        std::cerr << err.what() << std::endl;
+    }
 }
         
 const char * Form::GradeTooHighException::what(void) const throw()
