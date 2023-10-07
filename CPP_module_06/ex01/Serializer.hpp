@@ -5,7 +5,7 @@
 
 struct Data
 {
-	std::string name;
+	std::string content;
 };
 
 class Serializer
