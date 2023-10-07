@@ -2,12 +2,10 @@
 
 Form::Form()
     :name("default"), sign(false), signGrade(150), execGrade(150)
-{
-
-}
+{}
 
 Form::Form(std::string name, const int signGrade, const int execGrade)
-    :name(name), signGrade(signGrade), execGrade(execGrade)
+    :name(name), sign(false), signGrade(signGrade), execGrade(execGrade)
 {
     if (signGrade < 1 || execGrade < 1)
         throw GradeTooHighException();
@@ -17,9 +15,7 @@ Form::Form(std::string name, const int signGrade, const int execGrade)
 
 Form::Form(const Form &ref)
     :name(ref.name), sign(ref.sign), signGrade(ref.signGrade), execGrade(ref.execGrade)
-{
-
-}
+{}
 
 Form& Form::operator=(const Form &ref)
 {
@@ -37,7 +33,7 @@ Form::~Form() {}
 
 const std::string Form::getName() const
 {
-    return (name);
+    return (this->name);
 }
 
 int Form::getSignGrade() const
