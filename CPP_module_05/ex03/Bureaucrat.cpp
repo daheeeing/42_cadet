@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat()
     :name("default"), grade(1)
@@ -53,6 +54,33 @@ void Bureaucrat::decrementBureaucratGrade()
         throw GradeTooLowException();
     else
         grade++;
+}
+
+void Bureaucrat::signForm(AForm &formRef)
+{
+    bool chk;
+
+    formRef.beSigned(*this);
+    chk = formRef.getSigned();
+    if (chk == true)
+        std::cout << this->getName() << " signed " <<  formRef.getName() << std::endl;
+    else
+        std::cout << this->getName() << " couldn't sign " <<  formRef.getName() << " because the grade is too low." << std::endl;
+}
+
+void Bureaucrat::executeForm(AForm const & form)
+{
+    if (form.getSigned() == false)
+	{
+		std::cerr << this->name << " couldn’t execute " << form.getName() << ". ";
+		throw AForm::IsNotSignedException();
+	}
+	if (grade > form.getExecGrade())
+	{
+		std::cerr << this->name << " couldn’t execute " << form.getName() << ". ";
+		throw GradeTooLowException();	
+	}
+	form.execute(*this);
 }
 
 const char * Bureaucrat::GradeTooHighException::what(void) const throw()
