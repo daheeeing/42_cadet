@@ -9,10 +9,8 @@ ScalarConverter::ScalarConverter(const ScalarConverter& ref)
 
 ScalarConverter& ScalarConverter::operator=(const ScalarConverter& ref)
 {
-    if (this != &ref)
-    {
-        
-    }
+   (void)ref;
+	return *this;
 }
 
 ScalarConverter::~ScalarConverter() {}

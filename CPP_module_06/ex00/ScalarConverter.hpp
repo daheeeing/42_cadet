@@ -14,8 +14,6 @@ class ScalarConverter
         ScalarConverter(const ScalarConverter& ref);
 		ScalarConverter& operator=(const ScalarConverter& ref);
 		~ScalarConverter();
-
-
 };
 
 #endif
