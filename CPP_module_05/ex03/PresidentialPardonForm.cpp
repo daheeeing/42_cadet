@@ -12,6 +12,10 @@ PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &Pre
     :AForm(Pref.getName(), Pref.getSignGrade(), Pref.getExecGrade()), targetName(Pref.targetName)
 {}
 
+PresidentialPardonForm::PresidentialPardonForm(std::string name, std::string target)
+	: AForm(name, 25, 5), targetName(target)
+{}
+
 PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm &Pref)
 {
     if (this != &Pref)

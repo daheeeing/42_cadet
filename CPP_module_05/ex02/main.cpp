@@ -8,7 +8,7 @@ int main()
 {
     try
     {	
-        Bureaucrat b("Bureaucrat1", 6);
+        Bureaucrat b("Bureaucrat1", 40);
         std::cout << b << std::endl;
 
         ShrubberyCreationForm c("home"); // s: 145, e: 137

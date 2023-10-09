@@ -58,14 +58,16 @@ void Bureaucrat::decrementBureaucratGrade()
 
 void Bureaucrat::signForm(AForm &formRef)
 {
-    bool chk;
+    try {
+        bool chk;
 
-    formRef.beSigned(*this);
-    chk = formRef.getSigned();
-    if (chk == true)
-        std::cout << this->getName() << " signed " <<  formRef.getName() << std::endl;
-    else
-        std::cout << this->getName() << " couldn't sign " <<  formRef.getName() << " because the grade is too low." << std::endl;
+        formRef.beSigned(*this);
+        chk = formRef.getSigned();
+        if (chk == true)
+            std::cout << this->getName() << " signed " <<  formRef.getName() << std::endl;
+    } catch(std::exception &err) {
+        std::cerr << this->getName() << " couldn't sign " <<  formRef.getName() << " because the grade is too low." << std::endl;
+    }
 }
 
 void Bureaucrat::executeForm(AForm const & form)

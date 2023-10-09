@@ -12,6 +12,10 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &Rref)
     :AForm(Rref.getName(), Rref.getSignGrade(), Rref.getExecGrade()), targetName(Rref.targetName)
 {}
 
+RobotomyRequestForm::RobotomyRequestForm(std::string name, std::string target)
+    :AForm(name, 72, 45), targetName(target)
+{}
+
 RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm &Rref)
 {
     if(this != &Rref)
@@ -30,7 +34,7 @@ RobotomyRequestForm::~RobotomyRequestForm() {}
 void RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
     int chk;
-    srand((unsigned int)time(NULL));
+    srand(static_cast<unsigned int>(std::time(NULL)));
     std::cout << executor.getName() << " executed " << this->getName() << std::endl;
     std::cout << "drilling noises....";
     chk = rand() % 2;

@@ -53,16 +53,10 @@ const int& AForm::getExecGrade() const
 
 void AForm::beSigned(const Bureaucrat& bur)
 {
-    try {
     if (bur.getGrade() <= this->getSignGrade())
         this->sign = true;
     else
-        throw GradeTooLowException();
-    }
-    catch(std::exception &err)
-    {
-        std::cerr << err.what() << std::endl;
-    }
+        throw GradeTooLowException();   
 }
 
 void	AForm::setName(const std::string &name)

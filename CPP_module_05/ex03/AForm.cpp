@@ -56,7 +56,7 @@ void AForm::beSigned(const Bureaucrat& bur)
     if (bur.getGrade() <= this->getSignGrade())
         this->sign = true;
     else
-        throw GradeTooLowException();
+        throw GradeTooLowException();   
 }
 
 void	AForm::setName(const std::string &name)

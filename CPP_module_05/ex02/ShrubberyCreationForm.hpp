@@ -8,8 +8,8 @@ class ShrubberyCreationForm : public AForm
 {
 	private:
 		std::string	targetName;
-	public:
 		ShrubberyCreationForm();
+	public:
 		ShrubberyCreationForm(std::string targetName);
 		ShrubberyCreationForm(const ShrubberyCreationForm &Sref);
 		ShrubberyCreationForm& operator=(const ShrubberyCreationForm &Sref);

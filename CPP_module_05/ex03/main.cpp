@@ -1,38 +1,30 @@
-#include "AForm.hpp"
 #include "Bureaucrat.hpp"
-#include "PresidentialPardonForm.hpp"
-#include "RobotomyRequestForm.hpp"
+#include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 
 int main()
 {
-    try
-    {	
-        Bureaucrat b("Bureaucrat1", 6);
-        std::cout << b << std::endl;
+	try
+	{
+		Bureaucrat b("dapark", 10);
+		Intern intern;
+		AForm* form;
+		
+		//form = intern.makeForm("robotomy request", "Bender");
+		form = intern.makeForm("presidential pardon", "Bender");
+		//form = intern.makeForm("shrubbery creation", "Bender");
+		//form = intern.makeForm("test request", "Bender");
 
-        ShrubberyCreationForm c("home"); // s: 145, e: 137
-        RobotomyRequestForm d("RR"); // 72, 45
-        PresidentialPardonForm e("PP"); // 25, 5
-        std::cout << c << std::endl;
-        std::cout << d << std::endl;
-        std::cout << e << std::endl;
-        std::cout << std::endl;
-
-        b.signForm(c);
-        b.signForm(d);
-        b.signForm(e);	
-        std::cout << c << std::endl;
-        std::cout << d << std::endl;
-        std::cout << e << std::endl;
-        std::cout << std::endl;
-        b.executeForm(c);
-        b.executeForm(d);
-        b.executeForm(e);
-    }
-    catch(std::exception &err)
-    {
-        std::cerr << err.what() << std::endl;
-    }
-	return (0);
+		b.signForm(*form);
+		b.executeForm(*form);
+		delete form;
+	}
+	catch(std::exception & e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	return 0;
 }

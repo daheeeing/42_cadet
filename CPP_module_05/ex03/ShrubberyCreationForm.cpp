@@ -12,6 +12,10 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &Sref)
     :AForm(Sref.getName(), Sref.getSignGrade(), Sref.getExecGrade()), targetName(Sref.targetName)
 {}
 
+ShrubberyCreationForm::ShrubberyCreationForm(std::string name, std::string target)
+    :AForm(name, 145, 137), targetName(target)
+{}
+
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm &Sref)
 {
     if(this != &Sref)
