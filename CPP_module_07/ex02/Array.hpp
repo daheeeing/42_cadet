@@ -24,7 +24,7 @@ template <typename T>
 Array<T>::Array()
     :length(0)
 {
-	arr = new T;
+	arr = NULL;
 }
 
 template <typename T>
@@ -48,7 +48,7 @@ Array<T>& Array<T>::operator=(const Array<T> &ref)
 {
 	if (this != &ref)
 	{
-		delete [] arr;
+		delete []arr;
 		length = ref.length;
 		arr = new T[length];
 		for (size_t i = 0; i < length; i++)
