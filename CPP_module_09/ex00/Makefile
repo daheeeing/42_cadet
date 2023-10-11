@@ -1,4 +1,4 @@
-NAME = ex00
+NAME = btc
 
 CXXFLAGS =	-Wall -Wextra -Werror -std=c++98
 

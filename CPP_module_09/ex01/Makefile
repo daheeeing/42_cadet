@@ -1,4 +1,4 @@
-NAME = ex01
+NAME = RPN
 
 CXXFLAGS =	-Wall -Wextra -Werror -std=c++98
 
