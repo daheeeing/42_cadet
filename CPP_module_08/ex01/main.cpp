@@ -11,5 +11,9 @@ int main()
     std::cout << sp.shortestSpan() << std::endl;
     std::cout << sp.longestSpan() << std::endl;
     
+    //Span sp2 = Span(1500);
+    //sp2.addMoreNumber();
+    //std::cout << sp2.shortestSpan() << std::endl;
+    //std::cout << sp2.longestSpan() << std::endl;
     return (0);
 }

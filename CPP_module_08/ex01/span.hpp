@@ -3,16 +3,16 @@
 
 #include <iostream>
 #include <vector>
-
+#include <stdexcept>
 
 class Span
 {
     private:
         std::vector<int>	vec;
 		unsigned int		num_val;
+        Span();
 
     public:
-        Span();
         Span(const unsigned int num);
         Span(const Span& ref);
         Span& operator=(const Span& ref);
@@ -21,7 +21,6 @@ class Span
 	    size_t shortestSpan();
         void addNumber(const int num);
         void addMoreNumber();
-        int getNumber(size_t num);
 };
 
 #endif
