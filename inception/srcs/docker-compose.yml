@@ -1,0 +1,70 @@
+version: "3"
+
+networks:
+  nginxWordpress:
+    name: nginxWordpress
+    driver: bridge
+  wordpressMariadb:
+    name: wordpressMariadb
+    driver: bridge
+
+services:
+  nginx:
+    container_name: nginx
+    build: ./requirements/nginx
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - wordpress:/var/www/html
+    depends_on:
+      - wordpress
+    networks:
+      - nginxWordpress
+
+  wordpress:
+    container_name: wordpress
+    build: ./requirements/wordpress
+    restart: always
+    ports:
+      - "9000:9000"
+    volumes:
+      - wordpress:/var/www/html
+    depends_on:
+      - mariadb
+    networks:
+      - nginxWordpress
+      - wordpressMariadb
+    environment:
+      - .env
+
+  mariadb:
+    container_name: mariadb
+    build: ./requirements/mariadb
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb:/var/lib/mysql
+    networks:
+      - wordpressMariadb
+    environment:
+      - .env
+
+volumes:
+  wordpress:
+    driver: local
+    name: wordpress
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/dapark/data/wordpress
+
+  mariadb:
+    driver: local
+    name: mariadb
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/dapark/data/mariadb
