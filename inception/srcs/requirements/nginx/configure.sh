@@ -7,7 +7,6 @@ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/certs/ngi
 openssl dhparam -out /etc/nginx/certs/dhparam.pem 2048
 
 # NGINX configuration
-cat <<EOF > /etc/nginx/conf.d/default.conf
 server {
     listen 443 ssl http2;
     listen [::]:443 ssl http2;
@@ -28,7 +27,6 @@ server {
         # index index.html index.htm;
     }
 }
-EOF
 
 # Start NGINX
 nginx -g "daemon off;"

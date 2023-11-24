@@ -1,9 +1,7 @@
 FROM debian:buster
 
-#RUN apt-get update
-#RUN apt-get -y install php7.3 php-mysqli php-fpm wget sendmail
-
-#EXPOSE 9000
+RUN apt-get update
+RUN apt-get -y install php7.3 php-mysqli php-fpm wget sendmail
 
 # Copy your configure.sh script into the container
 COPY configure.sh /usr/local/bin/

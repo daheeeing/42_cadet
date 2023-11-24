@@ -1,11 +1,8 @@
 version: "3"
 
 networks:
-  nginxWordpress:
-    name: nginxWordpress
-    driver: bridge
-  wordpressMariadb:
-    name: wordpressMariadb
+  daparkNet:
+    name: daparkNet
     driver: bridge
 
 services:
@@ -14,14 +11,13 @@ services:
     build: ./requirements/nginx
     restart: always
     ports:
-      - "80:80"
       - "443:443"
     volumes:
       - wordpress:/var/www/html
     depends_on:
       - wordpress
     networks:
-      - nginxWordpress
+      - daparkNet
 
   wordpress:
     container_name: wordpress
@@ -34,8 +30,7 @@ services:
     depends_on:
       - mariadb
     networks:
-      - nginxWordpress
-      - wordpressMariadb
+      - daparkNet
     environment:
       - .env
 
@@ -48,7 +43,7 @@ services:
     volumes:
       - mariadb:/var/lib/mysql
     networks:
-      - wordpressMariadb
+      - daparkNet
     environment:
       - .env
 
