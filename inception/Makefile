@@ -1,4 +1,6 @@
 all: 
+	@mkdir -p ./home/dapark/data/wordpress
+	@mkdir -p ./home/dapark/data/mariadb
 	@docker-compose -f ./srcs/docker-compose.yml up
 
 down:

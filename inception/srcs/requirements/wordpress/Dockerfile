@@ -1,7 +1,7 @@
 FROM debian:buster
 
-RUN apt-get update
-RUN apt-get -y install php7.3 php-mysqli php-fpm wget sendmail
+RUN apt-get update && \
+    apt-get -y install php7.3 php-mysqli php-fpm wget sendmail
 
 # Copy your configure.sh script into the container
 COPY configure.sh /usr/local/bin/
@@ -11,4 +11,4 @@ RUN chmod +x /usr/local/bin/configure.sh
 EXPOSE 80
 
 # Set the entrypoint to run configure.sh script
-ENTRYPOINT ["configure.sh"]
+ENTRYPOINT ["/usr/local/bin/configure.sh"]

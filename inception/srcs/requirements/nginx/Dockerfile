@@ -3,10 +3,12 @@ FROM debian:buster
 RUN apt-get update
 RUN apt-get install -y nginx openssl
 
-CMD ["nginx", "-g", "daemon off;"]
+EXPOSE 443
 
 # Copy your configure.sh script into the container
-COPY configure.sh /etc/nginx
-RUN chmod +x ./nginx/configure.sh
+COPY ./configure.sh /etc/nginx
+RUN chmod +x /etc/nginx/configure.sh
 
-EXPOSE 443
+ENTRYPOINT [ "/etc/nginx/configure.sh" ]
+
+CMD ["nginx", "-g", "daemon off;"]

@@ -13,18 +13,17 @@ server {
 
     server_name dapark.42.fr;
 
+    ssl_protocols TLSv1.2 TLSv1.3;
     ssl_certificate /etc/nginx/certs/nginx-selfsigned.crt;
     ssl_certificate_key /etc/nginx/certs/nginx-selfsigned.key;
 
-    ssl_protocols TLSv1.2 TLSv1.3;
-    ssl_prefer_server_ciphers on;
-    ssl_dhparam /etc/nginx/certs/dhparam.pem;
-
-    location / {
-        # Your NGINX configuration directives here
-        # For example:
-        # root /var/www/html;
-        # index index.html index.htm;
+    location ~ \.php {
+        fastcgi_pass wordpress:9000;
+        fastcgi_split_path_info ^(.+\.php)(.*)$;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PATH_INFO $fastcgi_path_info;
+        include fastcgi_params;
     }
 }
 
