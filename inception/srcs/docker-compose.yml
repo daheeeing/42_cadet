@@ -54,7 +54,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/dapark/data/wordpress
+      device: ../home/dapark/data/wordpress
 
   mariadb:
     driver: local
@@ -62,4 +62,4 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/dapark/data/mariadb
+      device: ../home/dapark/data/mariadb
