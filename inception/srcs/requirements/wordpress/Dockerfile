@@ -11,6 +11,8 @@ WORKDIR /var/www/html
 COPY configure.sh /
 RUN chmod +x /configure.sh
 
+# COPY ./www.conf /etc/php/7.3/fpm/pool.d/www.conf
+
 # Set the entrypoint to run configure.sh script
 ENTRYPOINT ["/configure.sh"]
 
