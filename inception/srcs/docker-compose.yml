@@ -46,7 +46,7 @@ services:
       - daparkNet
     env_file:
       - .env
-
+      
 volumes:
   wordpress:
     driver: local
